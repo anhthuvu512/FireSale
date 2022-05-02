@@ -1,8 +1,28 @@
+.navbar {
+    min-height: 90px;
+}
+
 .container {
     background-color: aqua;
 }
-
+.home {
+    float: left;
+    width: 50%;
+}
 #logo {
+    width: 3em;
+    height: 3em;
+}
+
+#title {
+    padding-top: .5em;
+}
+
+li {
+    padding-top: 1em;
+}
+
+#profile_img {
     width: 3em;
     height: 3em;
 }
