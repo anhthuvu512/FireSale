@@ -10,14 +10,8 @@ class User(models.Model):
 class Seller(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.name
-
 class Buyer(models.Model):
     buyer = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
