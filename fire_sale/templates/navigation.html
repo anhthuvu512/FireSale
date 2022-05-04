@@ -1,32 +1,32 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#" style="font-family: Audiowide">
-        <img id="logo" class="home" src="../static/images/fire-icon.png">
-        <p id="title" class="home"> Fire Sale </p>
-      </a>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'sale-index' %}">Items</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#"><img id="profile_img" src="../static/images/profile.png"></a></li>
-          {% if user.is_authenticated %}
-              <li><a href="{% url 'logout' %}">Sign out</a></li>
-          {% else %}
-              <li><a href="{% url 'login' %}">Sign in</a></li>
-          {% endif %}
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'sale-index' %}" style="font-family: Audiowide">
+                <img id="logo" class="home" src="https://cdn-icons-png.flaticon.com/512/2089/2089500.png">
+                <p id="title" class="home"> Fire Sale </p>
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><img id="star" src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png"><span>4.0</span></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Sign out</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Sign in</a></li>
+                {% endif %}
+                <li><a href="#"><img id="notification" src="https://cdn-icons-png.flaticon.com/512/3602/3602123.png"></a></li>
+                <li><a href="#"><img id="profile_img" src="https://cdn-icons.flaticon.com/png/512/552/premium/552721.png?token=exp=1651687217~hmac=9a9dd68600a71334181af18fc11ac765"></a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
 </nav>
 
 
