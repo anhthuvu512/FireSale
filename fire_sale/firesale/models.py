@@ -11,13 +11,13 @@ class Seller(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return User.name(pk=self.seller)
+        return str(self.seller)
 
 class Buyer(models.Model):
     buyer = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return User.name(pk=self.buyer)
+        return str(self.buyer)
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
@@ -44,4 +44,4 @@ class Offer(models.Model):
     buyer = models.ForeignKey(Buyer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.price
+        return str(self.price)
