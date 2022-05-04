@@ -4,6 +4,8 @@
 
 .container {
     background-color: aqua;
+    text-align: center;
+
 }
 .home {
     float: left;
@@ -36,4 +38,13 @@ li {
     color: white;
     text-align: left;
     padding: 15px;
+}
+
+.container .item {
+
+
+    display: table-cell;
+    padding: 50px;
+
+
 }
