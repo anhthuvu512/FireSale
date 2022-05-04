@@ -1,10 +1,19 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from firesale.forms.item_form import ItemCreateForm
-from firesale.forms.item_form import ItemUpdateForm
+from firesale.forms.item_form import ItemCreateForm, ItemUpdateForm
 from firesale.models import Item, ItemImage
 
 
 def index(request):
+    if 'search_filter' in request.GET:
+        search_filter = request.GET['search_filter']
+        items = [{
+            'id': item.id,
+            'name': item.name,
+            'description': item.description,
+            'firstImage': item.itemimage_set.first().image
+        } for item in Item.objects.filter(name__icontains=search_filter)]
+        return JsonResponse({'data': items})
     context = {'items': Item.objects.all().order_by('name')}
     return render(request, 'sale/index.html', context)
 
