@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'firesale.apps.FiresaleConfig'
+    'firesale.apps.FiresaleConfig',
+    'user.apps.UserConfig'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR, 'static']
+
+LOGIN_URL = '/user/login'
+LOGIN_REDIRECT_URL = '/sales'

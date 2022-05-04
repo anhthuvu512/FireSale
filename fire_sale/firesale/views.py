@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from firesale.forms.item_form import ItemCreateForm, ItemUpdateForm
@@ -22,6 +23,7 @@ def get_item_by_id(request, id):
         'item': get_object_or_404(Item, pk=id)
     })
 
+@login_required
 def create_item(request):
     if request.method == 'POST':
         form = ItemCreateForm(data=request.POST)
@@ -36,6 +38,7 @@ def create_item(request):
         'form': form
     })
 
+@login_required
 def update_item(request, id):
     instance = get_object_or_404(Item, pk=id)
     if request.method == 'POST':
@@ -50,6 +53,7 @@ def update_item(request, id):
         'id': id
     })
 
+@login_required
 def delete_item(request, id):
     item = get_object_or_404(Item, pk=id)
     item.delete()
