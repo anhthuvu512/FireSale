@@ -7,7 +7,6 @@ class ItemCreateForm(ModelForm):
     class Meta:
         model = Item
         exclude = ['id', 'highest_offer', 'available']
-        fields = ['name','condition','description','seller']
         widgets = {
             'name': widgets.TextInput(attrs={'class': 'form-control'}),
             'condition': widgets.TextInput(attrs={'class': 'form-control'}),

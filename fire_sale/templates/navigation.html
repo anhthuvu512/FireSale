@@ -23,7 +23,11 @@
                     <li><a href="{% url 'login' %}">Sign in</a></li>
                 {% endif %}
                 <li><a href="#"><img id="notification" src="https://cdn-icons-png.flaticon.com/512/3602/3602123.png"></a></li>
-                <li><a href="#"><img id="profile_img" src="https://cdn-icons.flaticon.com/png/512/552/premium/552721.png?token=exp=1651687217~hmac=9a9dd68600a71334181af18fc11ac765"></a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="#"><img id="profile_img" src="{{ user.profile.profile_image }}"></a></li>
+                {% else %}
+                    <li><a href="#"><img id="profile_img" src="https://cdn-icons.flaticon.com/png/512/552/premium/552721.png?token=exp=1651687217~hmac=9a9dd68600a71334181af18fc11ac765"></a></li>
+                {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

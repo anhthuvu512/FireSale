@@ -1,4 +1,5 @@
 delete from django_migrations where app = 'firesale';
+delete from django_migrations where app = 'user';
 
 drop table firesale_user;
 drop table firesale_item;
@@ -6,6 +7,7 @@ drop table firesale_itemimage;
 drop table firesale_seller;
 drop table firesale_buyer;
 drop table firesale_offer;
+drop table user_profile;
 
 select * from firesale_user;
 select * from firesale_seller;
