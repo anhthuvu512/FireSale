@@ -16,7 +16,6 @@ class ItemCreateForm(ModelForm):
         }
 
 class ItemUpdateForm(ModelForm):
-    image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
     class Meta:
         model = Item
         exclude = ['id', 'highest_offer', 'available']
