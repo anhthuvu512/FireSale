@@ -13,3 +13,15 @@ class ItemCreateForm(ModelForm):
             'description': widgets.TextInput(attrs={'class': 'form-control'}),
             'seller': widgets.Select(attrs={'class': 'form-control'})
         }
+
+class ItemUpdateForm(ModelForm):
+    image: forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    class Meta:
+        model = Item
+        exclude = ['id', 'highest_offer', 'available']
+        widgets = {
+            'name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'condition': widgets.TextInput(attrs={'class': 'form-control'}),
+            'description': widgets.TextInput(attrs={'class': 'form-control'}),
+            'seller': widgets.Select(attrs={'class': 'form-control'})
+        }

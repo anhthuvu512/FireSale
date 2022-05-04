@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from firesale.forms.item_form import ItemCreateForm
+from firesale.forms.item_form import ItemUpdateForm
 from firesale.models import Item, ItemImage
 
 
-# Create your views here.
 def index(request):
     context = {'items': Item.objects.all().order_by('name')}
     return render(request, 'sale/index.html', context)
@@ -26,3 +26,22 @@ def create_item(request):
     return render(request, 'sale/create_item.html', {
         'form': form
     })
+
+def update_item(request, id):
+    instance = get_object_or_404(Item, pk=id)
+    if request.method == 'POST':
+        form = ItemUpdateForm(data=request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('item-details', id=id)
+    else:
+        form = ItemUpdateForm(instance=instance)
+    return render(request, 'sale/update_item.html', {
+        'form': form,
+        'id': id
+    })
+
+def delete_item(request, id):
+    item = get_object_or_404(Item, pk=id)
+    item.delete()
+    return redirect('sale-index')
