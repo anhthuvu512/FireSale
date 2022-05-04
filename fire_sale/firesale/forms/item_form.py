@@ -6,12 +6,10 @@ class ItemCreateForm(ModelForm):
     image: forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
     class Meta:
         model = Item
-        exclude = ['id']
+        exclude = ['id', 'highest_offer', 'available']
         widgets = {
             'name': widgets.TextInput(attrs={'class': 'form-control'}),
-            'highest_offer': widgets.NumberInput(attrs={'class': 'form-control'}),
             'condition': widgets.TextInput(attrs={'class': 'form-control'}),
             'description': widgets.TextInput(attrs={'class': 'form-control'}),
-            'available': widgets.CheckboxInput(attrs={'class': 'checkbox'}),
             'seller': widgets.Select(attrs={'class': 'form-control'})
         }

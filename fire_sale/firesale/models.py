@@ -21,10 +21,10 @@ class Buyer(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
-    highest_offer = models.IntegerField(default=0)
+    highest_offer = models.IntegerField(blank=True, default=0)
     condition = models.CharField(max_length=255, blank=True)
     description = models.CharField(max_length=255, blank=True)
-    available = models.BooleanField(default=True)
+    available = models.BooleanField(blank=True, default=True)
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
 
     def __str__(self):
