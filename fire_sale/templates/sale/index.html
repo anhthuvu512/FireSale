@@ -9,8 +9,9 @@
             </button>
         </div>
     </div>
-    <div class="items"></div>
+    <div class="items">
     {% for item in items %}
         {% include 'sale/single_item.html' with item=item %}
     {% endfor %}
+    </div>
 {% endblock %}
