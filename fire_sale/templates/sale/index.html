@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Catalog</h1>
+    <h1 class="red">Catalog</h1>
     <div class="items"></div>
     {% for item in items %}
         {% include 'sale/single_item.html' with item=item %}

@@ -10,8 +10,14 @@ class User(models.Model):
 class Seller(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return User.name(pk=self.seller)
+
 class Buyer(models.Model):
     buyer = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return User.name(pk=self.buyer)
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
@@ -27,6 +33,9 @@ class Item(models.Model):
 class ItemImage(models.Model):
     image = models.CharField(max_length=9999)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.image
 
 class Offer(models.Model):
     price = models.IntegerField()
