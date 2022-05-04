@@ -26,4 +26,8 @@ insert into firesale_item(name, highest_offer, condition, description, available
 insert into firesale_item(name, highest_offer, condition, description, available, seller_id) values ('T-shirt', 0, 'Good', 'A cute cat t-shirt', true, 1);
 insert into firesale_item(name, highest_offer, condition, description, available, seller_id) values ('Old camera', 0, 'Good', 'Useful camera', true, 2);
 
-insert into firesale_itemimage(image, item_id) values ('notebook.png', 4)
+insert into firesale_itemimage(image, item_id)
+Values('notebook.png',1),
+      ('threads.png',2),
+      ('cat_tshirt.png',3),
+      ('old_camera.png',4);
