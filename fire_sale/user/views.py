@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from user.models import Profile
 from user.forms.profile_form import ProfileForm
 
@@ -11,6 +11,11 @@ def register(request):
             return redirect('login')
     return render(request, 'user/register.html', {
         'form': UserCreationForm()
+    })
+
+def profile(request):
+    return render(request, 'user/profile.html', {
+        'user': get_object_or_404(Profile)
     })
 
 def edit_profile(request):
