@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="red">Catalog</h1>
+    <div class="input-group">
+        <input type="search" class="form-control" id="search-box"/>
+        <div class="input-group-btn">
+            <button type="button" id="search-btn" class="btn btn-default">
+                <img src="../../static/images/search.png" style="width: 1.25em; height: 1.25em">
+            </button>
+        </div>
+    </div>
     <div class="items"></div>
     {% for item in items %}
         {% include 'sale/single_item.html' with item=item %}
