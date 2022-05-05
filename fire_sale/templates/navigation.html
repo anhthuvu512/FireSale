@@ -17,13 +17,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><img id="star" src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png"><span>4.0</span></li>
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     <li><a href="{% url 'logout' %}">Sign out</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Sign in</a></li>
                 {% endif %}
                 <li><a href="#"><img id="notification" src="https://cdn-icons-png.flaticon.com/512/3602/3602123.png"></a></li>
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     <li><a href="{% url 'profile' %}"><img id="profile_img" src="{{ user.profile.profile_image }}"></a></li>
                 {% else %}
                     <li><img id="profile_img" src="https://cdn-icons.flaticon.com/png/512/552/premium/552721.png?token=exp=1651687217~hmac=9a9dd68600a71334181af18fc11ac765"></li>
