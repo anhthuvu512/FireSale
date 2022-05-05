@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from firesale.forms.item_form import ItemCreateForm, ItemUpdateForm
-from firesale.models import Item, ItemImage
+from firesale.models import Item, ItemImage, Seller
 
 
 def index(request):
@@ -43,8 +44,12 @@ def sort_item(request):
 def create_item(request):
     if request.method == 'POST':
         form = ItemCreateForm(data=request.POST)
+        for x in form:
+            print(x.value())
         if form.is_valid():
-            item = form.save()
+            item = form.save(commit=False)
+            item.seller = Seller.objects.get(seller=request.user.id)
+            item.save()
             item_image = ItemImage(image=request.POST['image'], item=item)
             item_image.save()
             return redirect('sale-index')
