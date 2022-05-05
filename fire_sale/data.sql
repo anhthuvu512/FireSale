@@ -13,6 +13,7 @@ select * from firesale_user;
 select * from firesale_seller;
 select * from firesale_item;
 select * from firesale_itemimage;
+select * from user_profile;
 
 insert into firesale_user(name) values ('YuYu');
 insert into firesale_user(name) values ('FaFa');

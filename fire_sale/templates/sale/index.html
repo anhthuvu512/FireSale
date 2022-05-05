@@ -1,13 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="red">Catalog</h1>
+    <div>
+        <a href="{% url 'create-item' %}">
+            <button type="button" id="create-btn" class="btn btn-default">
+                <img src="https://cdn-icons.flaticon.com/png/512/3416/premium/3416075.png?token=exp=1651744893~hmac=8de53e7d6171201e843d11b6e4a3c081" style="width: 1.25em; height: 1.25em">
+                Create item
+            </button>
+        </a>
+    </div>
     <div class="input-group">
         <input type="search" class="form-control" id="search-box"/>
         <div class="input-group-btn">
             <button type="button" id="search-btn" class="btn btn-default">
-                <img src="../../static/images/search.png" style="width: 1.25em; height: 1.25em">
+                <img src="https://cdn-icons.flaticon.com/png/512/2801/premium/2801881.png?token=exp=1651744780~hmac=30140e3ac45b423a3ed24e2fa8f881ea" style="width: 1.25em; height: 1.25em">
             </button>
         </div>
+    </div>
+    <div>
+        Sort by
+        <select class="custom-select">
+            <option selected>Recent</option>
+            <option value="name_asc">Name: A to Z</option>
+            <option value="name_desc">Name: Z to A</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+        </select>
     </div>
     <div class="items">
     {% for item in items %}
