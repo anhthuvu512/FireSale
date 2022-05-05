@@ -39,13 +39,15 @@ li {
     padding: 15px;
 }
 
-.container .item {
+.container .items .item {
+    display: inline-block;
+    padding: 30px;
+}
 
 
-    display: table-cell;
-    padding: 50px;
-
-
+.item-img {
+    width: 20em;
+    height: 20em;
 }
 .item-content{
     text-align: left;

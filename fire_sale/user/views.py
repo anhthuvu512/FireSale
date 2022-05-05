@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from user.models import Profile
@@ -13,11 +14,13 @@ def register(request):
         'form': UserCreationForm()
     })
 
+@login_required
 def profile(request):
     return render(request, 'user/profile.html', {
         'user': get_object_or_404(Profile)
     })
 
+@login_required
 def edit_profile(request):
     instance = Profile.objects.filter(user=request.user).first()
     if request.method == 'POST':
