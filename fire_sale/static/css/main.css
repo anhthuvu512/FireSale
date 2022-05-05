@@ -47,3 +47,16 @@ li {
 
 
 }
+.item-content{
+    text-align: left;
+}
+
+.item-title{
+    display: inline;
+    font-weight: bolder;
+    margin: 0;
+}
+.item-info{
+    display: inline;
+    margin: 0;
+}
