@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>{{ item.name }}</h1>
-    <p>{{ item.condition }}</p>
-    <p>{{ item.description }}</p>
+    <p style="display: inline; font-weight: bolder;">Condition: </p><p style="display: inline;">{{ item.condition }}</p>
+    <br>
+    <p style="display: inline; font-weight: bolder;">Description: </p><p style="display: inline;">{{ item.description }}</p>
+    <br>
     {% for item_image in item.itemimage_set.all %}
         <img class="item-img" src="{{ item_image.image }}">
     {% endfor %}
+    <br>
     <a href="{% url 'update-item' item.id %}" class="block btn btn-primary">Update item</a>
     <a href="{% url 'delete-item' item.id %}" class="block btn btn-primary">Delete item</a>
 {% endblock %}
