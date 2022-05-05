@@ -18,14 +18,17 @@
         </div>
     </div>
     <div>
+    <form action="{% url 'sort-item' %}">
         Sort by
-        <select class="custom-select">
-            <option selected>Recent</option>
+        <select name="sort" class="custom-select">
+            <option value="recent" selected>Recent</option>
             <option value="name_asc">Name: A to Z</option>
             <option value="name_desc">Name: Z to A</option>
             <option value="price_asc">Price: Low to High</option>
             <option value="price_desc">Price: High to Low</option>
+            <input type="submit" value="sort">
         </select>
+        </form>
     </div>
     <div class="items">
     {% for item in items %}

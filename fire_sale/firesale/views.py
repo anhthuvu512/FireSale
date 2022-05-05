@@ -23,6 +23,22 @@ def get_item_by_id(request, id):
         'item': get_object_or_404(Item, pk=id)
     })
 
+def sort_item(request):
+    items = Item.objects.all()
+    sort_by = request.GET.get('sort')
+    if sort_by == 'name_asc':
+        items = items.order_by('name')
+    elif sort_by == 'name_desc':
+        items = items.order_by('-name')
+    elif sort_by == 'price_asc':
+        items = items.order_by('highest_offer')
+    elif sort_by == 'price_desc':
+        items = items.order_by('-highest_offer')
+    elif sort_by == 'recent':
+        items = items.order_by('-id')
+    context = {'items': items}
+    return render(request, 'sale/index.html', context)
+
 @login_required
 def create_item(request):
     if request.method == 'POST':
