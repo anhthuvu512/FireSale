@@ -27,16 +27,8 @@ def get_item_by_id(request, id):
 def sort_item(request):
     items = Item.objects.all()
     sort_by = request.GET.get('sort')
-    if sort_by == 'name_asc':
-        items = items.order_by('name')
-    elif sort_by == 'name_desc':
-        items = items.order_by('-name')
-    elif sort_by == 'price_asc':
-        items = items.order_by('highest_offer')
-    elif sort_by == 'price_desc':
-        items = items.order_by('-highest_offer')
-    elif sort_by == 'recent':
-        items = items.order_by('-id')
+    if sort_by:
+        items = items.order_by(sort_by)
     context = {'items': items}
     return render(request, 'sale/index.html', context)
 

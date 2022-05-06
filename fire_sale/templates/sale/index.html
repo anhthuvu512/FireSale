@@ -21,12 +21,13 @@
     <form action="{% url 'sort-item' %}">
         Sort by
         <select name="sort" class="custom-select">
-            <option value="recent" selected>Recent</option>
-            <option value="name_asc">Name: A to Z</option>
-            <option value="name_desc">Name: Z to A</option>
-            <option value="price_asc">Price: Low to High</option>
-            <option value="price_desc">Price: High to Low</option>
-             <input type="image" name="sort" src="https://cdn-icons-png.flaticon.com/512/117/117221.png" style="width: 1.25em; height: 1.25em">
+            <option value="" selected>Recommended</option>
+            <option value="-id">Recent</option>
+            <option value="name">Name: A to Z</option>
+            <option value="-name">Name: Z to A</option>
+            <option value="highest_offer">Price: Low to High</option>
+            <option value="-highest_offer">Price: High to Low</option>
+            <input type="image" name="sort" src="https://cdn-icons-png.flaticon.com/512/117/117221.png" style="width: 1.25em; height: 1.25em">
         </select>
         </form>
     </div>
