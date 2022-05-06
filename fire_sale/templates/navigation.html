@@ -24,7 +24,7 @@
                 {% endif %}
                 <li><a href="#"><img id="notification" src="https://cdn-icons-png.flaticon.com/512/3602/3602123.png"></a></li>
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'profile' %}"><img id="profile_img" src="{{ user.profile.profile_image }}"></a></li>
+                    <li><a href="{% url 'edit-profile' %}"><img id="profile_img" src="{{ user.profile.profile_image }}"></a></li>
                 {% else %}
                     <li><img id="profile_img" src="https://cdn-icons-png.flaticon.com/512/64/64572.png"></li>
                 {% endif %}

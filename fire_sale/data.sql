@@ -8,6 +8,8 @@ drop table firesale_item;
 drop table firesale_seller;
 
 drop table user_profile;
+drop table user_address;
+drop table user_payment;
 
 select * from firesale_seller;
 select * from firesale_item;
