@@ -21,7 +21,7 @@
     <form action="{% url 'sort-item' %}">
         Sort by
         <select name="sort" class="custom-select" onchange="this.form.submit()">
-            <option value="" selected>Recommended</option>
+            <option value="" selected>-- Select --</option>
             <option value="-id">Recent</option>
             <option value="name">Name: A to Z</option>
             <option value="-name">Name: Z to A</option>
@@ -36,14 +36,3 @@
     {% endfor %}
     </div>
 {% endblock %}
-
-<script>
-    $(document).ready(function(){
-
-    $("select[name=sort]").change(function(){
-
-        $("#yourFormId").submit();
-    })
-
-});
-</script>

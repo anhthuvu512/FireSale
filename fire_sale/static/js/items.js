@@ -22,4 +22,8 @@ $(document).ready(function () {
             }
         })
     });
+
+    $("select[name=sort]").change(function(){
+        $("#yourFormId").submit();
+    })
 });
