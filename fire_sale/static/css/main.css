@@ -32,11 +32,11 @@ li {
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 40px;
     background-color: black;
     color: white;
     text-align: left;
-    padding: 15px;
+    padding: 11px;
 }
 
 .container .items .item {
@@ -61,4 +61,10 @@ li {
 .item-info{
     display: inline;
     margin: 0;
+}
+
+
+#help-text {
+    color: gray;
+
 }
