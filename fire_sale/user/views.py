@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from user.models import Profile, Address, Payment
+from firesale.models import Item
 from user.forms.user_form import ProfileForm, UserContactForm, UserPaymentForm
 
 def register(request):
@@ -58,9 +59,17 @@ def payment(request):
             payment.user = request.user
             payment.save()
             print(payment)
-            return redirect('sale-index')
+            return redirect('review/1')
     return render(request, 'user/payment.html', {
         'form': UserPaymentForm()
+    })
+
+@login_required
+def review(request, id):
+    return render(request, 'user/review.html', {
+        'item': get_object_or_404(Item, pk=id),
+        'contact': Address.objects.get(user=request.user.id),
+        'payment': Payment.objects.get(user=request.user.id)
     })
 
 

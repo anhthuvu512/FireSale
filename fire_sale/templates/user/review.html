@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Review</h1>
+    <div class="item-content">
+        <h1>{{ item.name }}</h1>
+        <img class="item-img" src="{{ item.itemimage_set.first.image }}">
+        <br>
+        <p class="item-title">Highest offer: </p><p class="item-info">{{ item.highest_offer }}kr</p>
+        <br>
+        <p class="item-title">Condition: </p><p class="item-info">{{ item.condition }}</p>
+        <br>
+        <p class="item-title">Description: </p><p class="item-info">{{ item.description }}</p>
+        <br>
+    </div>
+    <div class="contact-content">
+        <h1>Contact Information</h1>
+        <p class="contact-title">Full name: </p><p class="contact-info">{{ contact.full_name }}</p>
+        <br>
+        <p class="contact-title">Street name: </p><p class="contact-info">{{ contact.street_name }}</p>
+        <br>
+        <p class="contact-title">House number: </p><p class="contact-info">{{ contact.house_nr }}</p>
+        <br>
+        <p class="contact-title">City: </p><p class="contact-info">{{ contact.city }}</p>
+        <br>
+        <p class="contact-title">Postal code: </p><p class="contact-info">{{ contact.zip }}</p>
+        <br>
+        <p class="contact-title">Country: </p><p class="contact-info">{{ contact.country }}</p>
+        <br>
+    </div>
+    <div class="payment-content">
+        <h1>Contact Information</h1>
+        <p class="payment-title">Cardholder name: </p><p class="payment-info">{{ payment.cardholder }}</p>
+        <br>
+        <p class="payment-title">Card number: </p><p class="payment-info">{{ payment.card_nr }}</p>
+        <br>
+        <p class="payment-title">Expiry date: </p><p class="payment-info">{{ payment.expiry_date }}</p>
+        <br>
+        <p class="payment-title">CVC: </p><p class="payment-info">{{ payment.cvc }}</p>
+        <br>
+    </div>
+{% endblock %}

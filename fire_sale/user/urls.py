@@ -9,5 +9,6 @@ urlpatterns=[
     path('profile', views.profile, name='profile'),
     path('edit_profile', views.edit_profile, name='edit-profile'),
     path('contact', views.contact, name='contact'),
-    path('payment', views.payment, name='payment')
+    path('payment', views.payment, name='payment'),
+    path('review/<int:id>', views.review, name='review')
 ]

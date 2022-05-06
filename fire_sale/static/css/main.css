@@ -51,16 +51,16 @@ li {
     width: 20em;
     height: 20em;
 }
-.item-content{
+.item-content, .contact-content, .payment-content{
     text-align: left;
 }
 
-.item-title{
+.item-title, .contact-title, .payment-title{
     display: inline;
     font-weight: bolder;
     margin: 0;
 }
-.item-info{
+.item-info, .contact-info, .payment-info{
     display: inline;
     margin: 0;
 }
