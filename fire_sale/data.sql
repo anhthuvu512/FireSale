@@ -38,10 +38,6 @@ Values('https://images.unsplash.com/photo-1625229086762-f06307638717?ixlib=rb-1.
       ('https://d2wwnnx8tks4e8.cloudfront.net/images/app/large/5000394017641_3.JPG',5),
       ('https://i.ebayimg.com/images/g/juMAAOxyjzNRGONf/s-l300.jpg',5);
 
-insert into firesale_offer(price, accepted, buyer_id, item_id, message) values (1599, false, 2, 1, 'i like this one...');
-
-delete from firesale_offer;
-
 drop function if exists CheckOfferPrice();
 create function CheckOfferPrice() returns trigger
 as $$ begin
