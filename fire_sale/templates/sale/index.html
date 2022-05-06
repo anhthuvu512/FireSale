@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 class="red">Catalog</h1>
+<div class="body_menu">
     <div>
         <a href="{% url 'create-item' %}">
             <button type="button" id="create-btn" class="btn btn-default">
@@ -17,7 +18,7 @@
             </button>
         </div>
     </div>
-    <div>
+    <div class="sorted">
     <form action="{% url 'sort-item' %}">
         Sort by
         <select name="sort" class="custom-select" onchange="this.form.submit()">
@@ -29,6 +30,7 @@
             <option value="-highest_offer">Price: High to Low</option>
         </select>
         </form>
+    </div>
     </div>
     <div class="items">
     {% for item in items %}

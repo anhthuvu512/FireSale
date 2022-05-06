@@ -70,7 +70,33 @@ li {
     color: gray;
 
 }
+.body_menu {
+    display: inline-flex;
+
+}
+ .sorted {
+     padding-left: 50px;
+
+ }
+#search-box {
+    width: 400px;
+}
+ #create-btn {
+     margin-right: 50px
+
+ }
 
 
 
+@media only screen and (max-width: 800px) {
+    #search-box {
+        width: 100px;
+    }
+    #create-btn {
+        margin-right: 10px;
+    }
+    .sorted {
+        padding-left: 10px;
+    }
+}
 
