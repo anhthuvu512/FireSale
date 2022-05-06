@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from firesale.forms.item_form import ItemCreateForm, ItemUpdateForm, MakeOfferForm
-from firesale.models import Item, ItemImage, Seller, Buyer
+from firesale.models import *
 
 
 def index(request):
@@ -83,6 +83,10 @@ def make_offer(request, id):
             offer.buyer = Buyer.objects.get(buyer=request.user.id)
             offer.item = Item.objects.get(pk=id)
             offer.save()
+            notification = SellerNotification.objects.create(sender=offer.buyer,
+                                                             receiver=offer.item.seller,
+                                                             notif=str(request.user.username)+' offers '+str(offer.price)+'kr for '+str(offer.item.name))
+            notification.save()
             return redirect('sale-index')
     else:
         form = MakeOfferForm()
