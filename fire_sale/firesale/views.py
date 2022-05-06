@@ -2,8 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from firesale.forms.item_form import ItemCreateForm, ItemUpdateForm
-from firesale.models import Item, ItemImage, Seller
+from firesale.forms.item_form import ItemCreateForm, ItemUpdateForm, MakeOfferForm
+from firesale.models import Item, ItemImage, Seller, Buyer
 
 
 def index(request):
@@ -71,3 +71,22 @@ def delete_item(request, id):
     item = get_object_or_404(Item, pk=id)
     item.delete()
     return redirect('sale-index')
+
+@login_required
+def make_offer(request, id):
+    if request.method == 'POST':
+        form = MakeOfferForm(data=request.POST)
+        for x in form:
+            print(x.value())
+        if form.is_valid():
+            offer = form.save(commit=False)
+            offer.buyer = Buyer.objects.get(buyer=request.user.id)
+            offer.item = Item.objects.get(pk=id)
+            offer.save()
+            return redirect('sale-index')
+    else:
+        form = MakeOfferForm()
+    return render(request, 'sale/make_offer.html', {
+        'form': form,
+        'id': id
+    })

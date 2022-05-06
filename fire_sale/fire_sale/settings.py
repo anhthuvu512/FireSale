@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_countries',
     'firesale.apps.FiresaleConfig',
     'user.apps.UserConfig'
 ]

@@ -1,12 +1,15 @@
 delete from django_migrations where app = 'firesale';
 delete from django_migrations where app = 'user';
 
-drop table firesale_item;
-drop table firesale_itemimage;
-drop table firesale_seller;
-drop table firesale_buyer;
 drop table firesale_offer;
+drop table firesale_buyer;
+drop table firesale_itemimage;
+drop table firesale_item;
+drop table firesale_seller;
+
 drop table user_profile;
+drop table user_address;
+drop table user_payment;
 
 select * from firesale_seller;
 select * from firesale_item;
@@ -15,8 +18,10 @@ select * from user_profile;
 
 insert into firesale_seller(seller_id) values (1);
 insert into firesale_seller(seller_id) values (2);
+insert into firesale_seller(seller_id) values (3);
 insert into firesale_buyer(buyer_id) values (1);
 insert into firesale_buyer(buyer_id) values (2);
+insert into firesale_buyer(buyer_id) values (3);
 
 insert into firesale_item(name, highest_offer, condition, description, available, seller_id) values ('Notebook', 0, 'Good', 'Some cute notebook that is really good and useful', true, 1);
 insert into firesale_item(name, highest_offer, condition, description, available, seller_id) values ('Threads', 0, 'Normal', 'Some old threads', true, 2);
@@ -29,7 +34,8 @@ Values('https://images.unsplash.com/photo-1625229086762-f06307638717?ixlib=rb-1.
       ('https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',3),
       ('https://images.unsplash.com/photo-1586527484765-979a20639316?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',4);
 
-insert into firesale_offer(price, accepted, buyer_id, item_id) values (1699, false, 2, 1);
+insert into firesale_offer(price, accepted, buyer_id, item_id, message) values (1599, false, 2, 1, 'i like this one...');
+delete from firesale_offer;
 
 drop function if exists CheckOfferPrice();
 create function CheckOfferPrice() returns trigger
