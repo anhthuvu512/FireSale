@@ -14,6 +14,8 @@
         {% if user.id == item.seller.seller_id %}
             <a href="{% url 'update-item' item.id %}" class="block btn btn-primary">Update item</a>
             <a href="{% url 'delete-item' item.id %}" class="block btn btn-primary">Delete item</a>
+        {% else %}
+            <a href="{% url 'make-offer' item.id %}" class="block btn btn-primary">Make offer</a>
         {% endif %}
     </div>
 {% endblock %}

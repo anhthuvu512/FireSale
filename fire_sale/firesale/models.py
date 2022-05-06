@@ -37,9 +37,26 @@ class ItemImage(models.Model):
 
 class Offer(models.Model):
     price = models.IntegerField()
-    accepted = models.BooleanField(default=True)
+    accepted = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     buyer = models.ForeignKey(Buyer, on_delete=models.CASCADE)
+    message = models.CharField(max_length=255, blank=True)
 
-    def __str__(self):
+    def str(self):
         return str(self.price)
+
+class BuyerNotification(models.Model):
+    sender = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    receiver = models.ForeignKey(Buyer, on_delete=models.CASCADE)
+    notif = models.CharField(max_length=255)
+
+    def str(self):
+        return str(self.notif)
+
+class SellerNotification(models.Model):
+    sender = models.ForeignKey(Buyer, on_delete=models.CASCADE)
+    receiver = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    notif = models.CharField(max_length=255)
+
+    def str(self):
+        str(self.notif)
