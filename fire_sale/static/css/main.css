@@ -42,6 +42,8 @@ li {
 .container .items .item {
     display: inline-block;
     padding: 30px;
+    padding-bottom: 60px;
+
 }
 
 
@@ -68,3 +70,7 @@ li {
     color: gray;
 
 }
+
+
+
+
