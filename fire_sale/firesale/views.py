@@ -2,9 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Avg
 from firesale.forms.item_form import ItemCreateForm, ItemUpdateForm, MakeOfferForm
 from firesale.models import *
-
+from user.models import *
 
 def index(request):
     if 'search_filter' in request.GET:
@@ -16,11 +17,14 @@ def index(request):
             'firstImage': item.itemimage_set.first().image
         } for item in Item.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': items})
+    ratings =  Rating.objects.all().aggregate(Avg('rate'))
+    #todo: get average rating of seller
     seller_notifs = SellerNotification.objects.all()
     buyer_notifs = BuyerNotification.objects.all()
     context = {'items': Item.objects.all().order_by('name'),
                'seller_notifs': seller_notifs,
-               'buyer_notifs': buyer_notifs}
+               'buyer_notifs': buyer_notifs,
+               'ratings': ratings}
     return render(request, 'sale/index.html', context)
 
 def item_details(request, id):

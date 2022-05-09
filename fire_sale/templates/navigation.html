@@ -16,7 +16,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><img id="star" src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png"><span>4.0</span></li>
+                <li><img id="star" src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png">
+                {% if ratings.rate__avg %}
+                    <span>{{ ratings.rate__avg }}</span></li>
+                {% else %}
+                    <span>None</span>
+                {% endif %}
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'logout' %}">Sign out</a></li>
                 {% else %}
