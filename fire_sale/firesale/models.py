@@ -56,6 +56,7 @@ class BuyerNotification(models.Model):
 class SellerNotification(models.Model):
     sender = models.ForeignKey(Buyer, on_delete=models.CASCADE)
     receiver = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
     notif = models.CharField(max_length=255)
 
     def str(self):
