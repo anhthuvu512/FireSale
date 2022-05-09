@@ -17,7 +17,7 @@ def index(request):
             'firstImage': item.itemimage_set.first().image
         } for item in Item.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': items})
-    ratings =  Rating.objects.all().aggregate(Avg('rate'))
+    ratings =  Rating.objects.filter(seller=request.user.id).aggregate(Avg('rate'))
     #todo: get average rating of seller
     seller_notifs = SellerNotification.objects.all()
     buyer_notifs = BuyerNotification.objects.all()
