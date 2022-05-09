@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
+from firesale.models import Seller
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -24,3 +26,9 @@ class Payment(models.Model):
     expiry_date = models.DateField()
     cvc = models.IntegerField()
 
+class Rating(models.Model):
+    rate = models.IntegerField(null=True, blank=True, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.rate)

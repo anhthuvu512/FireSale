@@ -16,7 +16,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><img id="star" src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png"><span>4.0</span></li>
+                <li><img id="star" src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png">
+                {% if ratings.rate__avg %}
+                    <span>{{ ratings.rate__avg }}</span></li>
+                {% else %}
+                    <span>None</span>
+                {% endif %}
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'logout' %}">Sign out</a></li>
                 {% else %}
@@ -28,10 +33,17 @@
                     </button>
 
                     <div class="dropdown-content">
-                    {% for notif in notifs %}
+                    {% for notif in seller_notifs %}
                         {% if user.id == notif.receiver_id %}
                         <a href="/sales/notification/{{ notif.id }}">
-                            <h4>{{ notif.notif }}</h4>
+                            <p>{{ notif.notif }}</p>
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for notif in buyer_notifs %}
+                        {% if user.id == notif.receiver_id %}
+                        <a href="">
+                            <p>{{ notif.notif }}</p>
                         </a>
                         {% endif %}
                     {% endfor %}
