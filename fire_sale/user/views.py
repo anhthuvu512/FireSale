@@ -36,7 +36,7 @@ def edit_profile(request):
     })
 
 @login_required
-def contact(request):
+def contact(request, id):
     instance = Address.objects.filter(user=request.user).first()
     if request.method == 'POST':
         form = UserContactForm(instance=instance, data=request.POST)
@@ -44,13 +44,14 @@ def contact(request):
             contact = form.save(commit=False)
             contact.user = request.user
             contact.save()
-            return redirect('payment')
+            return redirect('payment', id=id)
     return render(request, 'user/contact.html', {
-        'form': UserContactForm()
+        'form': UserContactForm(instance=instance),
+        'id': id
     })
 
 @login_required
-def payment(request):
+def payment(request, id):
     instance = Payment.objects.filter(user=request.user).first()
     if request.method == 'POST':
         form = UserPaymentForm(instance=instance, data=request.POST)
@@ -59,9 +60,10 @@ def payment(request):
             payment.user = request.user
             payment.save()
             print(payment)
-            return redirect('review/1')
+            return redirect('review', id=id)
     return render(request, 'user/payment.html', {
-        'form': UserPaymentForm()
+        'form': UserPaymentForm(instance=instance),
+        'id': id
     })
 
 @login_required
@@ -69,7 +71,8 @@ def review(request, id):
     return render(request, 'user/review.html', {
         'item': get_object_or_404(Item, pk=id),
         'contact': Address.objects.get(user=request.user.id),
-        'payment': Payment.objects.get(user=request.user.id)
+        'payment': Payment.objects.get(user=request.user.id),
+        'id': id
     })
 
 

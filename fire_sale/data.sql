@@ -1,11 +1,13 @@
 delete from django_migrations where app = 'firesale';
 delete from django_migrations where app = 'user';
 
+drop table firesale_buyernotification;
+drop table firesale_sellernotification;
 drop table firesale_offer;
 drop table firesale_buyer;
 drop table firesale_itemimage;
 drop table firesale_item;
-drop table firesale_seller;
+drop table firesale_seller cascade;
 
 drop table user_profile;
 drop table user_address;
@@ -56,3 +58,4 @@ create trigger CheckOfferPrice
 after insert on firesale_offer
 for each row execute procedure CheckOfferPrice();
 
+delete from firesale_sellernotification;
