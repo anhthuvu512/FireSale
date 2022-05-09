@@ -100,9 +100,13 @@ def make_offer(request, id):
 
 @login_required
 def seller_notif_detail(request, id):
-    notif=SellerNotification.objects.get(pk=id)
-    offer=Offer.objects.get(pk=notif.offer_id)
+    notif = SellerNotification.objects.get(pk=id)
+    offer = Offer.objects.get(pk=notif.offer_id)
+    item = Item.objects.get(pk=offer.item_id)
+    user = User.objects.get(pk=notif.sender_id)
     return render(request, 'sale/view_offer.html', {
         'notif': notif,
-        'offer': offer
+        'offer': offer,
+        'user': user,
+        'item': item
     })
