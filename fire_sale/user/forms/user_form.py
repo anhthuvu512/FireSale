@@ -1,6 +1,6 @@
 from django.forms import ModelForm, widgets
 from django_countries.widgets import CountrySelectWidget
-from user.models import Profile, Address, Payment
+from user.models import Profile, Address, Payment, Rating
 
 class ProfileForm(ModelForm):
     class Meta:
@@ -34,4 +34,12 @@ class UserPaymentForm(ModelForm):
             'card_nr': widgets.NumberInput(attrs={'class': 'form-control'}),
             'expiry_date': widgets.DateInput(attrs={'class': 'form-control'}, format='%m/%y'),
             'cvc': widgets.NumberInput(attrs={'class': 'form-control'})
+        }
+
+class UserRatingForm(ModelForm):
+    class Meta:
+        model = Rating
+        exclude = ['id', 'seller']
+        widgets = {
+            'rate': widgets.NumberInput(attrs={'class': 'form-control'})
         }

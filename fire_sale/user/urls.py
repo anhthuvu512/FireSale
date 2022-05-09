@@ -10,5 +10,6 @@ urlpatterns=[
     path('edit_profile', views.edit_profile, name='edit-profile'),
     path('contact/<int:id>', views.contact, name='contact'),
     path('payment/<int:id>', views.payment, name='payment'),
+    path('rate_seller/<int:id>', views.rate_seller, name='rate-seller'),
     path('review/<int:id>', views.review, name='review')
 ]

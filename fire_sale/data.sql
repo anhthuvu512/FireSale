@@ -12,6 +12,7 @@ drop table firesale_seller cascade;
 drop table user_profile;
 drop table user_address;
 drop table user_payment;
+drop table user_rating;
 
 select * from firesale_seller;
 select * from firesale_item;

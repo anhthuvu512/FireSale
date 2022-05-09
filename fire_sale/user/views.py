@@ -2,8 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from user.models import Profile, Address, Payment
-from firesale.models import Item
-from user.forms.user_form import ProfileForm, UserContactForm, UserPaymentForm
+from firesale.models import Item, Seller
+from user.forms.user_form import ProfileForm, UserContactForm, UserPaymentForm, UserRatingForm
 
 def register(request):
     if request.method == 'POST':
@@ -59,10 +59,25 @@ def payment(request, id):
             payment = form.save(commit=False)
             payment.user = request.user
             payment.save()
-            print(payment)
-            return redirect('review', id=id)
+            return redirect('rate-seller', id=id)
     return render(request, 'user/payment.html', {
         'form': UserPaymentForm(instance=instance),
+        'id': id
+    })
+
+@login_required
+def rate_seller(request, id):
+    if request.method == 'POST':
+        form = UserRatingForm(data=request.POST)
+        if form.is_valid():
+            rating = form.save(commit=False)
+            if rating.rate:
+                rating.seller = Seller.objects.get(seller=Item.objects.get(pk=id).seller.id)
+            rating.save()
+            print(rating)
+            return redirect('review', id=id)
+    return render(request, 'user/rate_seller.html', {
+        'form': UserRatingForm(),
         'id': id
     })
 
