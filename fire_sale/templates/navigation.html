@@ -22,7 +22,21 @@
                 {% else %}
                     <li><a href="{% url 'login' %}">Sign in</a></li>
                 {% endif %}
-                <li><a href="#" ><img id="notification" src="https://cdn-icons-png.flaticon.com/512/3602/3602123.png"></a></li>
+                <li class="dropdown" >
+                    <button class="dropbtn">
+                        <img id="notification" src="https://cdn-icons-png.flaticon.com/512/3602/3602123.png">
+                    </button>
+
+                    <div class="dropdown-content">
+                    {% for notif in notifs %}
+                        {% if user.id == notif.receiver_id %}
+                        <a href="/sales/notification/{{ notif.id }}">
+                            <h4>{{ notif.notif }}</h4>
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </li>
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'edit-profile' %}"><img id="profile_img" src="{{ user.profile.profile_image }}"></a></li>
                 {% else %}

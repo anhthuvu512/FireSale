@@ -16,7 +16,8 @@ def index(request):
             'firstImage': item.itemimage_set.first().image
         } for item in Item.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': items})
-    context = {'items': Item.objects.all().order_by('name')}
+    notifs = SellerNotification.objects.all()
+    context = {'items': Item.objects.all().order_by('name'),'notifs': notifs}
     return render(request, 'sale/index.html', context)
 
 def item_details(request, id):
@@ -93,4 +94,17 @@ def make_offer(request, id):
     return render(request, 'sale/make_offer.html', {
         'form': form,
         'id': id
+    })
+
+@login_required
+def seller_notif_detail(request, id):
+    notif=SellerNotification.objects.get(pk=id)
+    offer=Offer.objects.get(buyer_id=notif.sender.id)
+    item = Item.objects.get(pk=offer.item.id)
+    item_img=ItemImage.objects.get(item=item.id)
+    return render(request, 'sale/notification_detail.html', {
+        'notif': notif,
+        'offer': offer,
+        'item': item,
+        'item_img': item_img
     })

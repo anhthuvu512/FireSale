@@ -1,0 +1,10 @@
+
+    <div>
+        <p>{{ notif.notif }}</p>
+        <p>{{ item.name }}</p>
+        <p>{{ offer.price }}</p>
+        <p>{{ offer.message }}</p>
+        {% for item_image in item.itemimage_set.all %}
+            <img class="item-img" src="{{ item_image.image }}">
+        {% endfor %}
+    </div>

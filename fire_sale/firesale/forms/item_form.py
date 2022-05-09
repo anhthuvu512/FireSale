@@ -1,6 +1,6 @@
 from django.forms import ModelForm, widgets
 from django import forms
-from firesale.models import Item, Offer
+from firesale.models import *
 
 class ItemCreateForm(ModelForm):
     image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':'form-control'}))
@@ -30,4 +30,12 @@ class MakeOfferForm(ModelForm):
         widgets = {
             'price': widgets.TextInput(attrs={'class': 'form-control'}),
             'message': widgets.TextInput(attrs={'class': 'form-control'})
+        }
+
+class Seller_Notif(ModelForm):
+    class Meta:
+        model = SellerNotification
+        exclude = ['id', 'receiver', 'sender']
+        widgets = {
+            'notif': forms.Select(attrs={'class': 'form-control'})
         }
