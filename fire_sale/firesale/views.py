@@ -38,8 +38,6 @@ def sort_item(request):
 def create_item(request):
     if request.method == 'POST':
         form = ItemCreateForm(data=request.POST)
-        for x in form:
-            print(x.value())
         if form.is_valid():
             item = form.save(commit=False)
             item.seller = Seller.objects.get(seller=request.user.id)

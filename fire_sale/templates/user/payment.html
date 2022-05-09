@@ -4,6 +4,7 @@
     <form class="form form-horizontal" method="post">
         {% csrf_token %}
         {{ form }}
+        <a href="{% url 'contact' id %}" class="btn btn-primary">Prev</a>
         <input type="submit" class="btn btn-primary" value="Next"/>
     </form>
 {% endblock %}
