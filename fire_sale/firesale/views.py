@@ -16,9 +16,11 @@ def index(request):
             'firstImage': item.itemimage_set.first().image
         } for item in Item.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': items})
-    notifs = SellerNotification.objects.all()
+    seller_notifs = SellerNotification.objects.all()
+    buyer_notifs = BuyerNotification.objects.all()
     context = {'items': Item.objects.all().order_by('name'),
-               'notifs': notifs}
+               'seller_notifs': seller_notifs,
+               'buyer_notifs': buyer_notifs}
     return render(request, 'sale/index.html', context)
 
 def item_details(request, id):
@@ -76,8 +78,6 @@ def delete_item(request, id):
 def make_offer(request, id):
     if request.method == 'POST':
         form = MakeOfferForm(data=request.POST)
-        for x in form:
-            print(x.value())
         if form.is_valid():
             offer = form.save(commit=False)
             offer.buyer = Buyer.objects.get(buyer=request.user.id)
@@ -86,7 +86,8 @@ def make_offer(request, id):
             notification = SellerNotification.objects.create(sender=offer.buyer,
                                                              receiver=offer.item.seller,
                                                              offer_id=offer.id,
-                                                             notif=str(request.user.username)+' offers '+str(offer.price)+'kr for '+str(offer.item.name))
+                                                             notif=str(request.user.username)+' offers '+str(offer.price)+
+                                                                   'kr for '+str(offer.item.name))
             notification.save()
             return redirect('sale-index')
     else:
@@ -108,3 +109,28 @@ def seller_notif_detail(request, id):
         'user': user,
         'item': item
     })
+
+@login_required
+def decline_offer(request, id):
+    notif = SellerNotification.objects.get(pk=id)
+    offer = Offer.objects.get(pk=notif.offer_id)
+    notification = BuyerNotification.objects.create(sender_id=notif.receiver_id,
+                                                     receiver=offer.buyer,
+                                                     notif=str(request.user.username) + ' rejects the offer ' +
+                                                           str(offer.price) + 'kr for ' + str(offer.item.name))
+    notification.save()
+    notif.delete()
+    return redirect('sale-index')
+@login_required
+def accept_offer(request, id):
+    notif = SellerNotification.objects.get(pk=id)
+    offer = Offer.objects.get(pk=notif.offer_id)
+    notification = BuyerNotification.objects.create(sender_id=notif.receiver_id,
+                                                    receiver=offer.buyer,
+                                                    notif=str(request.user.username) + ' accepts the offer ' +
+                                                          str(offer.price) + 'kr for ' + str(offer.item.name))
+    notification.save()
+    notif.delete()
+    offer.accepted = True
+    offer.save()
+    return redirect('sale-index')

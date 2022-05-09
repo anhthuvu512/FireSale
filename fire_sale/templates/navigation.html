@@ -28,10 +28,17 @@
                     </button>
 
                     <div class="dropdown-content">
-                    {% for notif in notifs %}
+                    {% for notif in seller_notifs %}
                         {% if user.id == notif.receiver_id %}
                         <a href="/sales/notification/{{ notif.id }}">
-                            <h4>{{ notif.notif }}</h4>
+                            <p>{{ notif.notif }}</p>
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for notif in buyer_notifs %}
+                        {% if user.id == notif.receiver_id %}
+                        <a href="">
+                            <p>{{ notif.notif }}</p>
                         </a>
                         {% endif %}
                     {% endfor %}
