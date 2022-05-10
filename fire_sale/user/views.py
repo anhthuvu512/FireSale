@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
-from user.models import Profile, Address, Payment
-from firesale.models import Item, Seller
+from user.models import Profile, Address, Payment, Rating
+from firesale.models import Item, Seller, Offer
 from user.forms.user_form import ProfileForm, UserContactForm, UserPaymentForm, UserRatingForm
 
 def register(request):
@@ -13,12 +14,6 @@ def register(request):
             return redirect('login')
     return render(request, 'user/register.html', {
         'form': UserCreationForm()
-    })
-
-@login_required
-def profile(request):
-    return render(request, 'user/profile.html', {
-        'user': get_object_or_404(Profile)
     })
 
 @login_required
@@ -67,28 +62,31 @@ def payment(request, id):
 
 @login_required
 def rate_seller(request, id):
+    user = Seller.objects.get(pk=Offer.objects.get(pk=id).seller.id).seller
+    instance = Rating.objects.filter(user=user).first()
     if request.method == 'POST':
-        form = UserRatingForm(data=request.POST)
+        form = UserRatingForm(instance=instance, data=request.POST)
         if form.is_valid():
             rating = form.save(commit=False)
             if rating.rate:
-                rating.seller = Seller.objects.get(seller=Item.objects.get(pk=id).seller.id)
+                rating.user = user
             rating.save()
-            print(rating)
             return redirect('review', id=id)
     return render(request, 'user/rate_seller.html', {
-        'form': UserRatingForm(),
+        'form': UserRatingForm(instance=instance),
         'id': id
     })
 
 @login_required
 def review(request, id):
     return render(request, 'user/review.html', {
-        'item': get_object_or_404(Item, pk=id),
-        'contact': Address.objects.get(user=request.user.id),
-        'payment': Payment.objects.get(user=request.user.id),
+        'item': get_object_or_404(Item, pk=Offer.objects.get(pk=id).item.id),
+        'contact': get_object_or_404(Address, user=request.user.id),
+        'payment': get_object_or_404(Payment, user=request.user.id),
         'id': id
     })
+
+#todo: Add cancel button to review
 
 
 

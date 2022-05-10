@@ -41,6 +41,12 @@ Values('https://images.unsplash.com/photo-1625229086762-f06307638717?ixlib=rb-1.
       ('https://d2wwnnx8tks4e8.cloudfront.net/images/app/large/5000394017641_3.JPG',5),
       ('https://i.ebayimg.com/images/g/juMAAOxyjzNRGONf/s-l300.jpg',5);
 
+insert into firesale_offer(price, accepted, message, buyer_id, item_id, seller_id)
+VALUES (500,false, 'me like', 3, 3, 1);
+
+insert into firesale_sellernotification(notif, offer_id, receiver_id, sender_id)
+VALUES ('otheruser offers 500kr for T-shirt', 1, 1 ,3);
+
 drop function if exists CheckOfferPrice();
 create function CheckOfferPrice() returns trigger
 as $$ begin
@@ -59,8 +65,17 @@ create trigger CheckOfferPrice
 after insert on firesale_offer
 for each row execute procedure CheckOfferPrice();
 
-insert into firesale_offer(price, accepted, message, buyer_id, item_id, seller_id)
-VALUES (500,false, 'me like', 3, 3, 1);
 
-insert into firesale_sellernotification(notif, offer_id, receiver_id, sender_id)
-VALUES ('otheruser offers 500kr for T-shirt', 1, 1 ,3);
+drop function if exists AddNewUser();
+create function AddNewUser() returns trigger
+as $$ begin
+    insert into firesale_seller(seller_id) values (new.id);
+    insert into firesale_buyer(buyer_id) values (new.id);
+    return new;
+end; $$ language  plpgsql;
+
+drop trigger if exists AddNewUser on "fire-sale-db";
+create trigger AddNewUser
+after insert on auth_user
+for each row execute procedure AddNewUser();
+
