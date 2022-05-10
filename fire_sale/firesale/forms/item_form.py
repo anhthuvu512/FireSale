@@ -23,6 +23,14 @@ class ItemUpdateForm(ModelForm):
             'description': widgets.TextInput(attrs={'class': 'form-control'}),
         }
 
+class ItemImageAddForm(ModelForm):
+    class Meta:
+        model = ItemImage
+        exclude = ['id', 'item']
+        widgets = {
+            'image': widgets.TextInput(attrs={'class': 'form-control'})
+        }
+
 class MakeOfferForm(ModelForm):
     class Meta:
         model = Offer

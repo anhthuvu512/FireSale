@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Avg
-from firesale.forms.item_form import ItemCreateForm, ItemUpdateForm, MakeOfferForm
+from firesale.forms.item_form import *
 from firesale.models import *
 from user.models import *
 
@@ -78,6 +78,22 @@ def delete_item(request, id):
     item = get_object_or_404(Item, pk=id)
     item.delete()
     return redirect('sale-index')
+
+@login_required
+def add_image(request, id):
+    if request.method == 'POST':
+        form = ItemImageAddForm(data=request.POST)
+        if form.is_valid():
+            item_img = form.save(commit=False)
+            item_img.item = Item.objects.get(pk=id)
+            item_img.save()
+            return redirect('item-details', id=id)
+    else:
+        form = ItemImageAddForm()
+    return render(request, 'sale/add_image.html', {
+        'form': form,
+        'id': id
+    })
 
 @login_required
 def make_offer(request, id):

@@ -7,6 +7,7 @@ urlpatterns = [
     path('create_item', views.create_item, name="create-item"),
     path('delete_item/<int:id>', views.delete_item, name='delete-item'),
     path('update_item/<int:id>', views.update_item, name='update-item'),
+    path('<int:id>/add_image', views.add_image, name='add-image'),
     path('sort_item', views.sort_item, name="sort-item"),
     path('make_offer/<int:id>', views.make_offer, name="make-offer"),
     path('notification/<int:id>', views.seller_notif_detail, name="seller-notif-detail"),
