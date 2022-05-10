@@ -20,10 +20,12 @@ def index(request):
     ratings =  Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
     seller_notifs = SellerNotification.objects.all()
     buyer_notifs = BuyerNotification.objects.all()
+    notif=seller_notifs.union(buyer_notifs)
     offer = Offer.objects.all()
     context = {'items': Item.objects.all().order_by('name'),
                'seller_notifs': seller_notifs,
                'buyer_notifs': buyer_notifs,
+               'notifs': notif.order_by('-id'),
                'offer': offer,
                'ratings': ratings}
     return render(request, 'sale/index.html', context)
@@ -118,19 +120,22 @@ def seller_notif_detail(request, id):
 
 @login_required
 def decline_offer(request, id):
-    offer = Offer.objects.get(pk=id)
-    notif = SellerNotification.objects.get(offer_id=offer.id)
+    notif = SellerNotification.objects.get(pk=id)
+    offer = Offer.objects.get(pk=notif.offer_id)
     notification = BuyerNotification.objects.create(sender_id=notif.receiver_id,
-                                                     receiver=offer.buyer,
-                                                     notif=str(request.user.username) + ' rejects the offer ' +
+                                                    receiver=offer.buyer,
+                                                    offer_id=offer.id,
+                                                    notif=str(request.user.username) + ' rejects the offer ' +
                                                            str(offer.price) + 'kr for ' + str(offer.item.name))
     notification.save()
     notif.delete()
     return redirect('sale-index')
+
+
 @login_required
 def accept_offer(request, id):
-    offer = Offer.objects.get(pk=id)
-    notif = SellerNotification.objects.get(offer_id=offer.id)
+    notif = SellerNotification.objects.get(pk=id)
+    offer = Offer.objects.get(pk=notif.offer_id)
     notification = BuyerNotification.objects.create(sender_id=notif.receiver_id,
                                                     receiver=offer.buyer,
                                                     offer_id=offer.id,
