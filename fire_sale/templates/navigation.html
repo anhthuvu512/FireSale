@@ -35,21 +35,19 @@
                     <div class="dropdown-content">
                     {% for notif in seller_notifs %}
                         {% if user.id == notif.receiver_id %}
-                            <a href="/sales/notification/{{ notif.id }}">
+                            <a href="{% url 'notification' notif.id %}">
                                 <p>{{ notif.notif }}</p>
                             </a>
                         {% endif %}
                     {% endfor %}
                     {% for notif in buyer_notifs %}
                         {% if user.id == notif.receiver_id %}
-                            {% if not offer.accepted %}
-                                <a href="../../user/contact/{{ offer.id }}">
+                            {% if notif.offer.accepted %}
+                                <a href="{% url 'contact' notif.offer.id %}">
                                     <p>{{ notif.notif }}</p>
                                 </a>
                             {% else %}
-                                <a href="">
-                                    <p>{{ notif.notif }}</p>
-                                </a>
+                                <p>{{ notif.notif }}</p>
                             {% endif %}
                         {% endif %}
                     {% endfor %}
