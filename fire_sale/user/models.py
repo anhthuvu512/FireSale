@@ -27,7 +27,7 @@ class Payment(models.Model):
     cvc = models.IntegerField()
 
 class Rating(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     rate = models.IntegerField(null=True, blank=True, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
     def __str__(self):
