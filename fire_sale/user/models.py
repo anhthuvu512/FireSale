@@ -23,7 +23,8 @@ class Payment(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     cardholder = models.CharField(max_length=255)
     card_nr = models.CharField(max_length=255)
-    expiry_date = models.DateField()
+    expiry_month = models.IntegerField(validators=[MaxValueValidator(12), MinValueValidator(1)])
+    expiry_year = models.IntegerField(validators=[MaxValueValidator(99), MinValueValidator(22)])
     cvc = models.IntegerField()
 
 class Rating(models.Model):

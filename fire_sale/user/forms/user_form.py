@@ -32,7 +32,8 @@ class UserPaymentForm(ModelForm):
         widgets = {
             'cardholder': widgets.TextInput(attrs={'class': 'form-control'}),
             'card_nr': widgets.NumberInput(attrs={'class': 'form-control'}),
-            'expiry_date': widgets.DateInput(attrs={'class': 'form-control'}, format='%m/%y'),
+            'expiry_month': widgets.NumberInput(attrs={'class': 'form-control'}),
+            'expiry_year': widgets.NumberInput(attrs={'class': 'form-control'}),
             'cvc': widgets.NumberInput(attrs={'class': 'form-control'})
         }
 
