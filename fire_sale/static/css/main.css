@@ -2,6 +2,10 @@
     min-height: 90px;
 }
 
+body{
+    position: relative;
+    min-height: 100vh;
+}
 
 .container {
     text-align: center;
@@ -124,6 +128,7 @@ li {
 }
 
 .dropdown-content p {
+    z-index: -1;
     color: black;
     padding: 12px 16px;
     text-decoration: none;

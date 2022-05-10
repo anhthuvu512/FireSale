@@ -20,12 +20,10 @@ def index(request):
     ratings =  Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
     seller_notifs = SellerNotification.objects.all()
     buyer_notifs = BuyerNotification.objects.all()
-    notif=seller_notifs.union(buyer_notifs)
     offer = Offer.objects.all()
     context = {'items': Item.objects.all().order_by('name'),
-               'seller_notifs': seller_notifs,
-               'buyer_notifs': buyer_notifs,
-               'notifs': notif.order_by('-id'),
+               'seller_notifs': seller_notifs.order_by('-id'),
+               'buyer_notifs': buyer_notifs.order_by('-id'),
                'offer': offer,
                'ratings': ratings}
     return render(request, 'sale/index.html', context)
