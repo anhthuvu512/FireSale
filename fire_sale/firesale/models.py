@@ -40,6 +40,7 @@ class Offer(models.Model):
     accepted = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     buyer = models.ForeignKey(Buyer, on_delete=models.CASCADE)
+    seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
     message = models.CharField(max_length=255, blank=True)
 
     def str(self):
@@ -48,6 +49,7 @@ class Offer(models.Model):
 class BuyerNotification(models.Model):
     sender = models.ForeignKey(Seller, on_delete=models.CASCADE)
     receiver = models.ForeignKey(Buyer, on_delete=models.CASCADE)
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
     notif = models.CharField(max_length=255)
 
     def str(self):

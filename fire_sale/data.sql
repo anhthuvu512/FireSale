@@ -59,4 +59,8 @@ create trigger CheckOfferPrice
 after insert on firesale_offer
 for each row execute procedure CheckOfferPrice();
 
-delete from firesale_sellernotification;
+insert into firesale_offer(price, accepted, message, buyer_id, item_id, seller_id)
+VALUES (500,false, 'me like', 3, 3, 1);
+
+insert into firesale_sellernotification(notif, offer_id, receiver_id, sender_id)
+VALUES ('otheruser offers 500kr for T-shirt', 1, 1 ,3);

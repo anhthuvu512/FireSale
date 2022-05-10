@@ -26,7 +26,7 @@ class ItemUpdateForm(ModelForm):
 class MakeOfferForm(ModelForm):
     class Meta:
         model = Offer
-        exclude = ['id', 'accepted', 'buyer', 'item']
+        exclude = ['id', 'accepted', 'buyer', 'item', 'seller']
         widgets = {
             'price': widgets.TextInput(attrs={'class': 'form-control'}),
             'message': widgets.TextInput(attrs={'class': 'form-control'})

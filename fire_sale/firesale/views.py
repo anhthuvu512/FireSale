@@ -21,9 +21,11 @@ def index(request):
     #todo: get average rating of seller
     seller_notifs = SellerNotification.objects.all()
     buyer_notifs = BuyerNotification.objects.all()
+    offer = Offer.objects.all()
     context = {'items': Item.objects.all().order_by('name'),
                'seller_notifs': seller_notifs,
                'buyer_notifs': buyer_notifs,
+               'offer': offer,
                'ratings': ratings}
     return render(request, 'sale/index.html', context)
 
@@ -86,6 +88,7 @@ def make_offer(request, id):
             offer = form.save(commit=False)
             offer.buyer = Buyer.objects.get(buyer=request.user.id)
             offer.item = Item.objects.get(pk=id)
+            offer.seller = Seller.objects.get(seller_id=offer.item.seller_id)
             offer.save()
             notification = SellerNotification.objects.create(sender=offer.buyer,
                                                              receiver=offer.item.seller,
