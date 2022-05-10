@@ -3,7 +3,14 @@
     <h1>Card Information</h1>
     <form class="form form-horizontal" method="post">
         {% csrf_token %}
-        {{ form }}
+        <p class="item-title">Cardholder:</p><p class="item-info">{{ form.cardholder }}</p>
+        <br>
+        <p class="item-title">Card nr:</p><p class="item-info">{{ form.card_nr }}</p>
+        <br>
+        <p class="item-title">Expiry date:</p><p class="item-info">{{ form.expiry_month }}/{{ form.expiry_year }}</p>
+        <br>
+        <p class="item-title">CVC:</p><p class="item-info">{{ form.cvc }}</p>
+        <br>
         <a href="{% url 'contact' id %}" class="btn btn-primary">Prev</a>
         <input type="submit" class="btn btn-primary" value="Next"/>
     </form>

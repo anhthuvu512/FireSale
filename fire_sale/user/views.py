@@ -48,7 +48,6 @@ def contact(request, id):
 @login_required
 def payment(request, id):
     instance = Payment.objects.filter(user=request.user).first()
-    print(instance)
     if request.method == 'POST':
         form = UserPaymentForm(instance=instance, data=request.POST)
         if form.is_valid():
@@ -66,7 +65,6 @@ def rate_seller(request, id):
     seller = Seller.objects.get(pk=Offer.objects.get(pk=id).seller.id)
     item = Item.objects.get(pk=Offer.objects.get(pk=id).item.id)
     instance = Rating.objects.filter(item=item).first()
-    print(instance)
     if request.method == 'POST':
         form = UserRatingForm(instance=instance,data=request.POST)
         if form.is_valid():

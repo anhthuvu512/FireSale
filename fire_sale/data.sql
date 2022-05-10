@@ -17,7 +17,6 @@ drop table user_rating;
 select * from firesale_seller;
 select * from firesale_item;
 select * from firesale_itemimage;
-select * from user_profile;
 
 insert into firesale_seller(seller_id) values (1);
 insert into firesale_seller(seller_id) values (2);
