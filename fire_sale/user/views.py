@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from user.models import Profile, Address, Payment, Rating
-from firesale.models import Item, Seller, Offer
+from firesale.models import Item, Seller, Buyer, Offer
 from user.forms.user_form import ProfileForm, UserContactForm, UserPaymentForm, UserRatingForm
 
 def register(request):
@@ -48,6 +48,7 @@ def contact(request, id):
 @login_required
 def payment(request, id):
     instance = Payment.objects.filter(user=request.user).first()
+    print(instance)
     if request.method == 'POST':
         form = UserPaymentForm(instance=instance, data=request.POST)
         if form.is_valid():
@@ -62,14 +63,17 @@ def payment(request, id):
 
 @login_required
 def rate_seller(request, id):
-    user = Seller.objects.get(pk=Offer.objects.get(pk=id).seller.id).seller
-    instance = Rating.objects.filter(user=user).first()
+    seller = Seller.objects.get(pk=Offer.objects.get(pk=id).seller.id)
+    buyer = Buyer.objects.get(buyer=request.user)
+    instance = Rating.objects.filter(buyer=buyer).first()
+    print(instance)
     if request.method == 'POST':
-        form = UserRatingForm(instance=instance, data=request.POST)
+        form = UserRatingForm(instance=instance,data=request.POST)
         if form.is_valid():
             rating = form.save(commit=False)
             if rating.rate:
-                rating.user = user
+                rating.seller = seller
+                rating.buyer = buyer
             rating.save()
             return redirect('review', id=id)
     return render(request, 'user/rate_seller.html', {
