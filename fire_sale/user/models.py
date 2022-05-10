@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-from firesale.models import Seller, Buyer
+from firesale.models import Seller, Item
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -28,7 +28,7 @@ class Payment(models.Model):
 
 class Rating(models.Model):
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE, null=True, blank=True)
-    buyer = models.ForeignKey(Buyer, on_delete=models.CASCADE, null=True, blank=True)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True, blank=True)
     rate = models.IntegerField(null=True, blank=True, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
     def __str__(self):

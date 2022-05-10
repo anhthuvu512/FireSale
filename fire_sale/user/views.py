@@ -64,8 +64,8 @@ def payment(request, id):
 @login_required
 def rate_seller(request, id):
     seller = Seller.objects.get(pk=Offer.objects.get(pk=id).seller.id)
-    buyer = Buyer.objects.get(buyer=request.user)
-    instance = Rating.objects.filter(buyer=buyer).first()
+    item = Item.objects.get(pk=Offer.objects.get(pk=id).item.id)
+    instance = Rating.objects.filter(item=item).first()
     print(instance)
     if request.method == 'POST':
         form = UserRatingForm(instance=instance,data=request.POST)
@@ -73,7 +73,7 @@ def rate_seller(request, id):
             rating = form.save(commit=False)
             if rating.rate:
                 rating.seller = seller
-                rating.buyer = buyer
+                rating.item = item
             rating.save()
             return redirect('review', id=id)
     return render(request, 'user/rate_seller.html', {

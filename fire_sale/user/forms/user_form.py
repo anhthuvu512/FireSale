@@ -39,7 +39,7 @@ class UserPaymentForm(ModelForm):
 class UserRatingForm(ModelForm):
     class Meta:
         model = Rating
-        exclude = ['id', 'user']
+        exclude = ['id', 'seller', 'item']
         widgets = {
             'rate': widgets.NumberInput(attrs={'class': 'form-control'})
         }
