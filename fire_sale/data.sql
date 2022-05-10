@@ -6,7 +6,7 @@ drop table firesale_sellernotification;
 drop table firesale_offer;
 drop table firesale_buyer;
 drop table firesale_itemimage;
-drop table firesale_item;
+drop table firesale_item cascade;
 drop table firesale_seller cascade;
 
 drop table user_profile;
