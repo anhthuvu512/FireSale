@@ -42,10 +42,22 @@ Values('https://images.unsplash.com/photo-1625229086762-f06307638717?ixlib=rb-1.
       ('https://i.ebayimg.com/images/g/juMAAOxyjzNRGONf/s-l300.jpg',5);
 
 insert into firesale_offer(price, accepted, message, buyer_id, item_id, seller_id)
-VALUES (500,false, 'me like', 3, 3, 1);
+VALUES (500,false, 'me like', 3, 3, 1),
+       (199,false, 'i need this badly', 3, 2, 2),
+       (500,false, 'i like this one', 3, 4, 2),
+       (99,false, 'i need this badly', 2, 5, 1),
+       (599,false, 'i really like this', 1, 4, 2),
+       (200,false, 'i need this badly', 1, 2, 2);
 
 insert into firesale_sellernotification(notif, offer_id, receiver_id, sender_id)
-VALUES ('otheruser offers 500kr for T-shirt', 1, 1 ,3);
+VALUES ('otheruser offers 500kr for T-shirt', 1, 1 ,3),
+       ('otheruser offers 199kr for Threads', 2, 2 ,3),
+       ('otheruser offers 500kr for Old camera', 3, 2 ,3),
+       ('newuser offers 99kr for Unused batteries', 4, 1 ,2),
+       ('lorraine offers 599kr for Old camera', 5, 2 ,1),
+       ('lorraine offers 200kr for Threads', 6, 2 ,1);
+
+delete from firesale_buyernotification;
 
 drop function if exists CheckOfferPrice();
 create function CheckOfferPrice() returns trigger

@@ -118,8 +118,8 @@ def seller_notif_detail(request, id):
 
 @login_required
 def decline_offer(request, id):
-    notif = SellerNotification.objects.get(pk=id)
-    offer = Offer.objects.get(pk=notif.offer_id)
+    offer = Offer.objects.get(pk=id)
+    notif = SellerNotification.objects.get(offer_id=offer.id)
     notification = BuyerNotification.objects.create(sender_id=notif.receiver_id,
                                                      receiver=offer.buyer,
                                                      notif=str(request.user.username) + ' rejects the offer ' +
@@ -129,10 +129,11 @@ def decline_offer(request, id):
     return redirect('sale-index')
 @login_required
 def accept_offer(request, id):
-    notif = SellerNotification.objects.get(pk=id)
-    offer = Offer.objects.get(pk=notif.offer_id)
+    offer = Offer.objects.get(pk=id)
+    notif = SellerNotification.objects.get(offer_id=offer.id)
     notification = BuyerNotification.objects.create(sender_id=notif.receiver_id,
                                                     receiver=offer.buyer,
+                                                    offer_id=offer.id,
                                                     notif=str(request.user.username) + ' accepts the offer ' +
                                                           str(offer.price) + 'kr for ' + str(offer.item.name))
     notification.save()
