@@ -7,8 +7,9 @@
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 20%), 0 1px 5px rgb(0 0 0 / 20%);
 }
 
-a{
+a {
     color: black;
+    text-decoration: None;
 }
 
 #navbar-login {
@@ -42,14 +43,14 @@ a{
 }
 
 #top-btn{
-    width: 4.5em;
-    height: 4.5em;
+    width: 3.5em;
+    height: 3.5em;
     position: fixed;
     bottom: 45px;
-    right: 45px;
+    right: 35px;
 }
 
-h1{
+h1, h2{
     font-family: Audiowide;
 }
 
@@ -57,11 +58,12 @@ body{
     background-color: #fcf4e6;
     position: relative;
     min-height: 100vh;
+    overflow-x:hidden;
 }
 
 .container {
     text-align: center;
-    padding: 5em;
+    padding: 3em 5em;
 }
 
 .home {
@@ -149,7 +151,7 @@ li {
     color: gray;
 
 }
-.button{
+.button {
     background-color: black;
     color: white;
     padding: 0.5em;
