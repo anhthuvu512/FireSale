@@ -12,11 +12,11 @@
             <img class="item-img" src="{{ item_image.image }}">
         {% endfor %}
         {% if user.id == item.seller.seller_id %}
-            <a href="{% url 'add-image' item.id %}" class="block btn btn-primary">Add image</a>
-            <a href="{% url 'update-item' item.id %}" class="block btn btn-primary">Update item</a>
-            <a href="{% url 'delete-item' item.id %}" class="block btn btn-primary">Delete item</a>
+            <a href="{% url 'add-image' item.id %}" class="button">Add image</a>
+            <a href="{% url 'update-item' item.id %}" class="button">Update item</a>
+            <a href="{% url 'delete-item' item.id %}" class="button">Delete item</a>
         {% else %}
-            <a href="{% url 'make-offer' item.id %}" class="block btn btn-primary">Make offer</a>
+            <a href="{% url 'make-offer' item.id %}" class="button">Make offer</a>
         {% endif %}
     </div>
 {% endblock %}
