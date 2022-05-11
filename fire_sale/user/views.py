@@ -17,17 +17,20 @@ def register(request):
     })
 
 @login_required
-def edit_profile(request):
+def profile(request):
     instance = Profile.objects.filter(user=request.user).first()
     if request.method == 'POST':
-        form = ProfileForm(instance=instance, data=request.POST)
+        form = ProfileForm(request.POST, request.FILES, instance=instance)
+        print(form.errors)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
             return redirect('sale-index')
-    return render(request, 'user/edit_profile.html', {
-        'form': ProfileForm(instance=instance)
+        else:
+            print('NOPE')
+    return render(request, 'user/profile.html', {
+        'form': ProfileForm(instance=instance),
     })
 
 @login_required
