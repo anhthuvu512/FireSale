@@ -1,19 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Sign in</h1>
-    <br>
-    <form class="form form-horizontal" method="post" style="text-align: center">
+    <h2>Sign in</h2>
+    <form class="form form-horizontal" method="post">
         {% csrf_token %}
-        <label for="{{ form.username.id_for_label }}">Username:</label>
-        {{ form.username }}
+        {{ form }}
         <br>
-        <br>
-        <label for="{{ form.password.id_for_label }}">Password:</label>
-        {{ form.password }}
-        <br>
-        <br>
-        <br>
-        <input type="submit" class="button" value="Sign in"/>
+        <input type="submit" class="btn btn-primary" value="Sign in"/>
     </form>
     <br><br>
     <a href="{% url 'register' %}">Don't have an account</a>

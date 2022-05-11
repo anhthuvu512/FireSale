@@ -27,8 +27,18 @@ def index(request):
     return render(request, 'sale/index.html', context)
 
 def item_details(request, id):
+    item = get_object_or_404(Item, pk=id)
+    similar_items = []
+    for partial_name in item.name.split():
+        similar_item = Item.objects.filter(name__icontains=partial_name)
+        similar_items+=similar_item
+    similar_items = list(dict.fromkeys(similar_items))
+    for similar_item in similar_items:
+        if similar_item == item:
+            similar_items.remove(similar_item)
     return render(request, 'sale/item_details.html', {
-        'item': get_object_or_404(Item, pk=id)
+        'item': item,
+        'similar_items': similar_items
     })
 
 def sort_item(request):
