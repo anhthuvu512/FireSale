@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="item-content">
-        <h1>{{ item.name }}</h1>
+        <h2>{{ item.name }}</h2>
         <p class="item-title">Highest offer: </p><p class="item-info">{{ item.highest_offer }}kr</p>
         <br>
         <p class="item-title">Condition: </p><p class="item-info">{{ item.condition }}</p>
@@ -18,5 +18,15 @@
         {% else %}
             <a href="{% url 'make-offer' item.id %}" class="block btn btn-primary">Make offer</a>
         {% endif %}
+    </div>
+    <div class="items">
+        <h2>Similar items</h2>
+        {% for similar_item in similar_items %}
+            <div class="item">
+                <img class="item-img" src="{{ similar_item.itemimage_set.first.image }}">
+                <p>{{ similar_item.name }}</p>
+                <p>{{ similar_item.highest_offer }}kr</p>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

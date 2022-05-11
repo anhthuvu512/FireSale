@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Card Information</h1>
+    <h2>Card information</h2>
     <form class="form form-horizontal" method="post">
         {% csrf_token %}
         <p class="item-title">Cardholder:</p><p class="item-info">{{ form.cardholder }}</p>

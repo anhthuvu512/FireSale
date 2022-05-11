@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+    <h2>Update item</h2>
     <form class="form form-horizontal" action="{% url 'update-item' id %}" method="post">
         {% csrf_token %}
         {{ form }}
