@@ -94,8 +94,15 @@ li {
     padding-bottom: 60px;
 
 }
+.edit_profile {
+    display: inline-block;
+    width: auto;
 
+}
 
+#button_edit {
+    padding-top: 10px;
+}
 .item-img {
     width: 20em;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
