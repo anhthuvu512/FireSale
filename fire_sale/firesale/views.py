@@ -90,6 +90,13 @@ def delete_item(request, id):
     return redirect('sale-index')
 
 @login_required
+def unavailable_item(request, id):
+    item = get_object_or_404(Item, pk=Offer.objects.get(pk=id).item.id)
+    item.available = False
+    item.save()
+    return redirect('sale-index')
+
+@login_required
 def add_image(request, id):
     if request.method == 'POST':
         form = ItemImageAddForm(data=request.POST)

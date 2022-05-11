@@ -22,11 +22,13 @@
     <div class="items">
         <h2>Similar items</h2>
         {% for similar_item in similar_items %}
-            <div class="item">
-                <img class="item-img" src="{{ similar_item.itemimage_set.first.image }}">
-                <p>{{ similar_item.name }}</p>
-                <p>{{ similar_item.highest_offer }}kr</p>
-            </div>
+            {% if similar_item.available %}
+                <div class="item">
+                    <img class="item-img" src="{{ similar_item.itemimage_set.first.image }}">
+                    <p>{{ similar_item.name }}</p>
+                    <p>{{ similar_item.highest_offer }}kr</p>
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}
