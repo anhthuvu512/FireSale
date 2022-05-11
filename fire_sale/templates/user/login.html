@@ -3,10 +3,17 @@
     <h2>Sign in</h2>
     <form class="form form-horizontal" method="post">
         {% csrf_token %}
-        {{ form }}
+         <label for="{{ form.username.id_for_label }}" style="text-align: left">Username:</label><br>
+        {{ form.username }}
+        <br>
+        <br>
+        <label for="{{ form.password.id_for_label }}" style="text-align: left">Password:</label><br>
+        {{ form.password }}
+        <br>
+        <br>
         <br>
         <input type="submit" class="button" value="Sign in"/>
     </form>
-    <br><br>
+    <br>
     <a href="{% url 'register' %}">Don't have an account</a>
 {% endblock %}
