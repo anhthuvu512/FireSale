@@ -22,11 +22,9 @@ def index(request):
     ratings =  Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
     seller_notifs = SellerNotification.objects.all()
     buyer_notifs = BuyerNotification.objects.all()
-    offer = Offer.objects.all()
     context = {'items': Item.objects.all().order_by('name'),
                'seller_notifs': seller_notifs.order_by('-id'),
                'buyer_notifs': buyer_notifs.order_by('-id'),
-               'offer': offer,
                'ratings': ratings}
     return render(request, 'sale/index.html', context)
 
@@ -96,6 +94,13 @@ def delete_item(request, id):
     return redirect('sale-index')
 
 @login_required
+def unavailable_item(request, id):
+    item = get_object_or_404(Item, pk=Offer.objects.get(pk=id).item.id)
+    item.available = False
+    item.save()
+    return redirect('sale-index')
+
+@login_required
 def add_image(request, id):
     if request.method == 'POST':
         form = ItemImageAddForm(data=request.POST)
@@ -119,7 +124,7 @@ def make_offer(request, id):
             offer = form.save(commit=False)
             offer.buyer = Buyer.objects.get(buyer=request.user.id)
             offer.item = Item.objects.get(pk=id)
-            offer.seller = Seller.objects.get(seller_id=offer.item.seller_id)
+            offer.seller = Seller.objects.get(pk=Item.objects.get(pk=id).seller.id)
             offer.save()
             notification = SellerNotification.objects.create(sender=offer.buyer,
                                                              receiver=offer.item.seller,
@@ -140,11 +145,9 @@ def seller_notif_detail(request, id):
     notif = SellerNotification.objects.get(pk=id)
     offer = Offer.objects.get(pk=notif.offer_id)
     item = Item.objects.get(pk=offer.item_id)
-    user = User.objects.get(pk=notif.sender_id)
     return render(request, 'sale/view_offer.html', {
         'notif': notif,
         'offer': offer,
-        'user': user,
         'item': item
     })
 

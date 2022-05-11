@@ -56,7 +56,7 @@ VALUES ('otheruser offers 500kr for T-shirt', 1, 1 ,3),
        ('lorraine offers 599kr for Old camera', 5, 2 ,1),
        ('lorraine offers 200kr for Threads', 6, 2 ,1);
 
-delete from firesale_buyernotification;
+delete from firesale_buyernotification where id=5;
 
 drop function if exists CheckOfferPrice();
 create function CheckOfferPrice() returns trigger
@@ -89,4 +89,6 @@ drop trigger if exists AddNewUser on "fire-sale-db";
 create trigger AddNewUser
 after insert on auth_user
 for each row execute procedure AddNewUser();
+
+update firesale_item set available = False where id=10;
 

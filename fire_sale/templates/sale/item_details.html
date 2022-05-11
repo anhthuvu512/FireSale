@@ -12,22 +12,20 @@
             <img class="item-img" src="{{ item_image.image }}">
         {% endfor %}
         {% if user.id == item.seller.seller_id %}
-            <a href="{% url 'add-image' item.id %}" class="block btn btn-primary">Add image</a>
-            <a href="{% url 'update-item' item.id %}" class="block btn btn-primary">Update item</a>
-            <a href="{% url 'delete-item' item.id %}" class="block btn btn-primary">Delete item</a>
+            <a href="{% url 'add-image' item.id %}" class="button">Add image</a>
+            <a href="{% url 'update-item' item.id %}" class="button">Update item</a>
+            <a href="{% url 'delete-item' item.id %}" class="button">Delete item</a>
         {% else %}
-            <a href="{% url 'make-offer' item.id %}" class="block btn btn-primary">Make offer</a>
+            <a href="{% url 'make-offer' item.id %}" class="button">Make offer</a>
         {% endif %}
 
     </div>
     <div class="items">
         <h2>Similar items</h2>
-        {% for similar_item in similar_items %}
-            <div class="item">
-                <img class="item-img" src="{{ similar_item.itemimage_set.first.image }}">
-                <p>{{ similar_item.name }}</p>
-                <p>{{ similar_item.highest_offer }}kr</p>
-            </div>
+        {% for item in similar_items %}
+            {% if item.available %}
+                {% include 'sale/single_item.html' with item=item %}
+            {% endif %}
         {% endfor %}
     </div>
 

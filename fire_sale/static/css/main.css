@@ -52,7 +52,7 @@ body{
 
 .container {
     text-align: center;
-
+    padding: 5em;
 }
 
 .home {
@@ -100,9 +100,6 @@ li {
 
 }
 
-#button_edit {
-    padding-top: 10px;
-}
 .item-img {
     width: 20em;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -127,29 +124,36 @@ li {
     color: gray;
 
 }
+.button{
+    background-color: black;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
 .body_menu {
     display: inline-flex;
     padding-top: 10px;
     padding-bottom: 10px;
 
 }
- .sorted {
-     padding-left: 50px;
-
- }
+.sorted {
+    padding-left: 50px;
+    padding-top: 5px;
+}
 #search-box {
     width: 400px;
 }
- #create-btn {
-     margin-right: 50px
 
- }
+#create-btn {
+    margin-right: 50px
 
+}
 
- .make-offer {
-     display: inline-block;
-     width: auto;
- }
+.make-offer {
+    display: inline-block;
+    width: auto;
+}
 
 .edit_profile {
     display: inline-block;
