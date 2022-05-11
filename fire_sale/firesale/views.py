@@ -1,3 +1,4 @@
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -6,6 +7,7 @@ from django.db.models import Avg
 from firesale.forms.item_form import *
 from firesale.models import *
 from user.models import *
+
 
 def index(request):
     if 'search_filter' in request.GET:
@@ -43,6 +45,7 @@ def item_details(request, id):
         'similar_items': similar_items
     })
 
+
 def sort_item(request):
     items = Item.objects.all()
     sort_by = request.GET.get('sort')
@@ -50,6 +53,8 @@ def sort_item(request):
         items = items.order_by(sort_by)
     context = {'items': items}
     return render(request, 'sale/index.html', context)
+
+
 
 @login_required
 def create_item(request):
@@ -61,6 +66,7 @@ def create_item(request):
             item.save()
             item_image = ItemImage(image=request.POST['image'], item=item)
             item_image.save()
+
             return redirect('sale-index')
     else:
         form = ItemCreateForm()

@@ -18,6 +18,7 @@
         {% else %}
             <a href="{% url 'make-offer' item.id %}" class="block btn btn-primary">Make offer</a>
         {% endif %}
+
     </div>
     <div class="items">
         <h2>Similar items</h2>
@@ -29,4 +30,5 @@
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}
