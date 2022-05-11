@@ -81,8 +81,11 @@ def rate_seller(request, id):
 
 @login_required
 def review(request, id):
+    item = get_object_or_404(Item, pk=Offer.objects.get(pk=id).item.id)
+    item.available = False
+    item.save()
     return render(request, 'user/review.html', {
-        'item': get_object_or_404(Item, pk=Offer.objects.get(pk=id).item.id),
+        'item': item,
         'contact': get_object_or_404(Address, user=request.user.id),
         'payment': get_object_or_404(Payment, user=request.user.id),
         'id': id

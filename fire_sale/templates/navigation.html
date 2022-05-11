@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><img id="star" src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png">
                 {% if ratings.rate__avg %}
-                    <span>{{ ratings.rate__avg }}</span></li>
+                    <span>{{ ratings.rate__avg|floatformat }}</span></li>
                 {% else %}
                     <span>None</span>
                 {% endif %}
@@ -35,7 +35,7 @@
                     <div class="dropdown-content">
                     <h5>Sellers</h5>
                     {% for notif in buyer_notifs %}
-                        {% if user.id == notif.receiver_id %}
+                        {% if user.id == notif.receiver.buyer_id %}
                             {% if notif.offer.accepted %}
                                 <a href="{% url 'contact' notif.offer.id %}">
                                     <p>{{ notif.notif }}</p>
@@ -47,7 +47,7 @@
                     {% endfor %}
                     <h5>Buyers</h5>
                     {% for notif in seller_notifs %}
-                        {% if user.id == notif.receiver_id %}
+                        {% if user.id == notif.receiver.seller_id %}
                             <a href="{% url 'notification' notif.id %}">
                                 <p>{{ notif.notif }}</p>
                             </a>
