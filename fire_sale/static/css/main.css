@@ -151,8 +151,13 @@ li {
      width: auto;
  }
 
-
-
+.edit_profile {
+    display: inline-block;
+     width: auto;
+}
+#edit_btn {
+    padding-top: 10px;
+}
 
 .dropbtn {
     z-index: 10;
