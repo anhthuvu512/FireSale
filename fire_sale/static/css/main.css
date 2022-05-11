@@ -137,23 +137,23 @@ li {
     padding-bottom: 10px;
 
 }
- .sorted {
-     padding-left: 50px;
-
- }
+.sorted {
+    padding-left: 50px;
+    padding-top: 5px;
+}
 #search-box {
     width: 400px;
 }
- #create-btn {
-     margin-right: 50px
 
- }
+#create-btn {
+    margin-right: 50px
 
+}
 
- .make-offer {
-     display: inline-block;
-     width: auto;
- }
+.make-offer {
+    display: inline-block;
+    width: auto;
+}
 
 .edit_profile {
     display: inline-block;
