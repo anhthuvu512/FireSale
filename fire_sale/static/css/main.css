@@ -52,7 +52,7 @@ body{
 
 .container {
     text-align: center;
-
+    padding: 5em;
 }
 
 .home {
@@ -94,7 +94,11 @@ li {
     padding-bottom: 60px;
 
 }
+.edit_profile {
+    display: inline-block;
+    width: auto;
 
+}
 
 .item-img {
     width: 20em;
@@ -120,6 +124,13 @@ li {
     color: gray;
 
 }
+.button{
+    background-color: black;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
 .body_menu {
     display: inline-flex;
     padding-top: 10px;
@@ -144,8 +155,13 @@ li {
      width: auto;
  }
 
-
-
+.edit_profile {
+    display: inline-block;
+     width: auto;
+}
+#edit_btn {
+    padding-top: 10px;
+}
 
 .dropbtn {
     z-index: 10;
