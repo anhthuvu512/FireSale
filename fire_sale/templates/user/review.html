@@ -38,6 +38,6 @@
         <p class="payment-title">CVC: </p><p class="payment-info">{{ payment.cvc }}</p>
         <br>
     </div>
-    <a href="{% url 'rate-seller' id %}" class="button">Prev</a>
-    <a href="{% url 'unavailable-item' id %}" class="button">Confirm</a>
+    <input type="button" onclick="window.location.href='{% url 'rate-seller' id %}';" class="button" value="Prev"/>
+    <input type="button" onclick="window.location.href='{% url 'unavailable-item' id %}';" class="button" value="Confirm"/>
 {% endblock %}
