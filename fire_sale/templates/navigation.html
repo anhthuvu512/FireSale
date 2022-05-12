@@ -46,7 +46,11 @@
             </div>
         </li>
         {% if request.user.is_authenticated %}
-            <li><a href="{% url 'profile' %}"><img id="profile_img" src="/media/{{ user.profile.image }}"></a></li>
+            {% if not user.profile.image %}
+                <li><a href="{% url 'profile' %}"><img id="profile_img" src="/media/images/profile.png"></a></li>
+            {% else %}
+                <li><a href="{% url 'profile' %}"><img id="profile_img" src="/media/{{ user.profile.image }}"></a></li>
+            {% endif %}
         {% else %}
             <li><a><img id="profile_img" src="/media/images/profile.png"></a></li>
         {% endif %}
