@@ -136,22 +136,23 @@ li {
     text-align: left;
 }
 
-.item-content {
+.item-content  {
     padding: 5px;
     text-align: left;
     display: inline-block;
     padding-bottom: 10px;
-}
 
+}
 
 .item-detail-img {
     display: inline-block;
     padding-top: 10px;
+    padding-right: 20px;
 }
-#offer-btn {
-    position: absolute;
-    padding-right:50px;
-    right: 50px;
+
+#offer-btn, #btn-test {
+    display: inline-block;
+    padding: 10px;
 }
 
 

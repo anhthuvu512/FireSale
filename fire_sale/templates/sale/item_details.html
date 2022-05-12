@@ -19,11 +19,15 @@
         {% endfor %}
             </div>
         {% if user.id == item.seller.seller_id %}
+        <p id="btn-test">
             <a href="{% url 'add-image' item.id %}" class="button">Add image</a>
             <a href="{% url 'update-item' item.id %}" class="button">Update item</a>
             <a href="{% url 'delete-item' item.id %}" class="button">Delete item</a>
+            </p>
         {% else %}
-               <p id="offer-btn"><a href="{% url 'make-offer' item.id %}" class="button" >Make offer</a></p>
+        <p id="offer-btn">
+               <a href="{% url 'make-offer' item.id %}" class="button" >Make offer</a>
+        </p>
         {% endif %}
         </div>
 
