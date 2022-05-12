@@ -102,6 +102,7 @@ def update_item(request, id):
     return render(request, 'sale/update_item.html', {
         'form': form,
         'id': id,
+        'item': instance,
         'seller_notifs': seller_notifs.order_by('-id'),
         'buyer_notifs': buyer_notifs.order_by('-id'),
         'ratings': ratings
@@ -110,7 +111,8 @@ def update_item(request, id):
 @login_required
 def delete_item(request, id):
     item = get_object_or_404(Item, pk=id)
-    item.delete()
+    if request.user.id == item.seller.seller_id:
+        item.delete()
     return redirect('sale-index')
 
 @login_required
@@ -122,11 +124,12 @@ def unavailable_item(request, id):
 
 @login_required
 def add_image(request, id):
+    item = get_object_or_404(Item, pk=id)
     if request.method == 'POST':
         form = ItemImageAddForm(request.POST, request.FILES)
         if form.is_valid():
             item_img = form.save(commit=False)
-            item_img.item = Item.objects.get(pk=id)
+            item_img.item = item
             item_img.save()
             return redirect('item-details', id=id)
     else:
@@ -135,6 +138,7 @@ def add_image(request, id):
     return render(request, 'sale/add_image.html', {
         'form': form,
         'id': id,
+        'item': item,
         'seller_notifs': seller_notifs.order_by('-id'),
         'buyer_notifs': buyer_notifs.order_by('-id'),
         'ratings': ratings
@@ -142,12 +146,13 @@ def add_image(request, id):
 
 @login_required
 def make_offer(request, id):
+    item = get_object_or_404(Item, pk=id)
     if request.method == 'POST':
         form = MakeOfferForm(data=request.POST)
         if form.is_valid():
             offer = form.save(commit=False)
             offer.buyer = Buyer.objects.get(buyer=request.user.id)
-            offer.item = Item.objects.get(pk=id)
+            offer.item = item
             offer.seller = Seller.objects.get(pk=Item.objects.get(pk=id).seller.id)
             offer.save()
             notification = SellerNotification.objects.create(sender=offer.buyer,
@@ -163,6 +168,7 @@ def make_offer(request, id):
     return render(request, 'sale/make_offer.html', {
         'form': form,
         'id': id,
+        'item': item,
         'seller_notifs': seller_notifs.order_by('-id'),
         'buyer_notifs': buyer_notifs.order_by('-id'),
         'ratings': ratings

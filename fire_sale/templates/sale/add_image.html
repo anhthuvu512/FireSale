@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Add image</h2>
-    <div class="form">
-        <form enctype= multipart/form-data  class="form form-horizontal" action="{% url 'add-image' id %}" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Add" class="button" style="clear: both; margin: 10px 0">
-        </form>
-    </div>
+    {% if user.id == item.seller.seller_id %}
+        <h2>Add image</h2>
+        <div class="form">
+            <form enctype= multipart/form-data  class="form form-horizontal" action="{% url 'add-image' id %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Add" class="button" style="clear: both; margin: 10px 0">
+            </form>
+        </div>
+    {% else %}
+        <h2>Access denied</h2>
+        <p>You don't have permission to access this page</p>
+    {% endif %}
 {% endblock %}

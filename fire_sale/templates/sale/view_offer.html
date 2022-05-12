@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="notif">
+    {% if user.id == item.seller.seller_id %}
         <h2>View your offer</h2>
         <p class="item-title">Buyer: </p><p class="item-info">{{ user.username }}</p>
         <br>
@@ -13,5 +13,8 @@
         {% endfor %}
         <input type="button" onclick="window.location.href='{% url 'accept-offer' notif.id %}';" class="button" value="Accept"/>
         <input type="button" onclick="window.location.href='{% url 'decline-offer' notif.id %}';" class="button" value="Decline"/>
-    </div>
+    {% else %}
+        <h2>Access denied</h2>
+        <p>You don't have permission to access this page</p>
+    {% endif %}
 {% endblock %}
