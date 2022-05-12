@@ -132,9 +132,32 @@ li {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     height: 20em;
 }
-.item-content, .contact-content, .payment-content{
+.contact-content, .payment-content{
     text-align: left;
 }
+
+.item-content  {
+    padding: 5px;
+    text-align: left;
+    padding-bottom: 10px;
+
+}
+
+.item-detail-img {
+    display: inline-block;
+    padding-top: 10px;
+    padding-right: 20px;
+
+}
+
+
+#offer-btn, #btn-test {
+    display: inline;
+    padding: 10px;
+    padding-top: 265px;
+    position: absolute;
+}
+
 
 .item-title, .contact-title, .payment-title{
     display: inline;
@@ -251,5 +274,6 @@ li {
         width: 15em;
         height: 15em;
     }
+
 }
 
