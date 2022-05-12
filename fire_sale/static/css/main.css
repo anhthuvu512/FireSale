@@ -132,9 +132,28 @@ li {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     height: 20em;
 }
-.item-content, .contact-content, .payment-content{
+.contact-content, .payment-content{
     text-align: left;
 }
+
+.item-content {
+    padding: 5px;
+    text-align: left;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+
+.item-detail-img {
+    display: inline-block;
+    padding-top: 10px;
+}
+#offer-btn {
+    position: absolute;
+    padding-right:50px;
+    right: 50px;
+}
+
 
 .item-title, .contact-title, .payment-title{
     display: inline;

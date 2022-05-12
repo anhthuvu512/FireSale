@@ -8,6 +8,8 @@
         <br>
         <p class="item-title">Description: </p><p class="item-info">{{ item.description }}</p>
         <br>
+
+        <div class="item-detail-img">
         {% for item_image in item.itemimage_set.all %}
             {% if forloop.counter == 1 %}
                 <img class="item-img" src="{{ item_image.image }}" style="border-radius: 0.5em;"><br><br>
@@ -15,15 +17,17 @@
                 <img class="item-img" src="{{ item_image.image }}" style="height: 6.45em;width: 6.45em; display: inline-block;border-radius: 0.5em;">
             {% endif %}
         {% endfor %}
+            </div>
         {% if user.id == item.seller.seller_id %}
             <a href="{% url 'add-image' item.id %}" class="button">Add image</a>
             <a href="{% url 'update-item' item.id %}" class="button">Update item</a>
             <a href="{% url 'delete-item' item.id %}" class="button">Delete item</a>
         {% else %}
-            <a href="{% url 'make-offer' item.id %}" class="button">Make offer</a>
+               <p id="offer-btn"><a href="{% url 'make-offer' item.id %}" class="button" >Make offer</a></p>
         {% endif %}
+        </div>
 
-    </div>
+
     <div class="items">
         <h2>Similar items</h2>
         {% for item in similar_items %}
