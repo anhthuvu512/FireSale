@@ -1,4 +1,5 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -167,12 +168,15 @@ def make_offer(request, id):
         'ratings': ratings
     })
 
+
 @login_required
 def seller_notif_detail(request, id):
     notif = SellerNotification.objects.get(pk=id)
     offer = Offer.objects.get(pk=notif.offer_id)
     item = Item.objects.get(pk=offer.item_id)
     ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
+    if request.user.id != item.seller_id:
+        return redirect('sale-index')
     return render(request, 'sale/view_offer.html', {
         'notif': notif,
         'offer': offer,
