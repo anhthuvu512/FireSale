@@ -52,13 +52,15 @@ def sort_item(request):
 @login_required
 def create_item(request):
     if request.method == 'POST':
-        form = ItemCreateForm(data=request.POST)
+        form = ItemCreateForm(request.POST, request.FILES)
+        print(form)
         if form.is_valid():
             item = form.save(commit=False)
             item.seller = Seller.objects.get(seller=request.user.id)
             item.save()
-            item_image = ItemImage(image=request.POST['image'], item=item)
-            item_image.save()
+            item_images = request.FILES.getlist('image')
+            for image in item_images:
+                ItemImage.objects.create(image=image, item=item)
             return redirect('sale-index')
     else:
         form = ItemCreateForm()

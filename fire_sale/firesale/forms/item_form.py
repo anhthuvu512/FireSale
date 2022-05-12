@@ -3,7 +3,7 @@ from django import forms
 from firesale.models import *
 
 class ItemCreateForm(ModelForm):
-    image = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':'form-control'}))
+    images = forms.FileField(required=True)
     class Meta:
         model = Item
         exclude = ['id', 'highest_offer', 'available', 'seller']

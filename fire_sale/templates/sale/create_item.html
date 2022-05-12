@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>Item detail</h2>
-    <form class="form form-horizontal" action="{% url 'create-item' %}" method="post">
+    <form enctype= multipart/form-data class="form form-horizontal" action="{% url 'create-item' %}" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Create item" class="button" style="clear: both; margin: 10px 0">
+        <p class="item-title">Name:</p><p class="offer-price">{{ form.name }}</p>
+        <br>
+        <p class="item-title">Condition:</p><p class="offer-price">{{ form.condition }}</p>
+        <br>
+        <p class="item-title">Description:</p><p class="offer-price">{{ form.description }}</p>
+        <br>
+        <p class="item-title">Images</p><input type="file" multiple name="images" required id="id_images">
+        <br>
+        <input type="submit" value="Create item" class="button">
     </form>
 {% endblock %}
