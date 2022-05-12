@@ -132,6 +132,11 @@ li {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     height: 20em;
 }
+
+.zoom:hover{
+    transform: scale(3);
+}
+
 .contact-content, .payment-content{
     text-align: left;
 }
@@ -255,6 +260,9 @@ li {
     display: block;
 }
 
+#id_username, #id_password1, #id_password2 {
+    width: 20em;
+}
 
 
 @media only screen and (max-width: 800px) {
