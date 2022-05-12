@@ -257,9 +257,14 @@ input[type="file"] {
     display: block;
 }
 
-#id_username, #id_password1, #id_password2 {
+#id_username, #id_password, #id_password1, #id_password2 {
     width: 20em;
 }
+
+.container ul {
+    list-style: none;
+}
+
 
 
 @media only screen and (max-width: 800px) {
