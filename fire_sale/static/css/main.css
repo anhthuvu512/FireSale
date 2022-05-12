@@ -144,7 +144,7 @@ li {
 }
 
 .item-detail-img {
-    display: inline-grid;
+    display: inline-block;
     padding-top: 10px;
     padding-right: 20px;
 
