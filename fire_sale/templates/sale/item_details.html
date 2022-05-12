@@ -12,9 +12,9 @@
         <div class="item-detail-img">
         {% for item_image in item.itemimage_set.all %}
             {% if forloop.counter == 1 %}
-                <img class="item-img" src="{{ item_image.image }}" style="border-radius: 0.5em;"><br><br>
+                <img class="item-img" src="/media/{{ item_image.image }}" style="border-radius: 0.5em;"><br><br>
             {% else %}
-                <img class="item-img" src="{{ item_image.image }}" style="height: 6.45em;width: 6.45em; display: inline-block;border-radius: 0.5em;">
+                <img class="item-img" src="/media/{{ item_image.image }}" style="height: 6.45em;width: 6.45em; display: inline-block;border-radius: 0.5em;">
             {% endif %}
         {% endfor %}
             </div>

@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
@@ -15,3 +17,7 @@ urlpatterns = [
     path('decline_offer/<int:id>', views.decline_offer, name='decline-offer'),
     path('accept_offer/<int:id>', views.accept_offer, name='accept-offer')
 ]
+
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

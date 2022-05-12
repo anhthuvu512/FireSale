@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
-
 class Seller(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -29,7 +27,7 @@ class Item(models.Model):
 
 
 class ItemImage(models.Model):
-    image = models.CharField(max_length=9999)
+    image = models.FileField(upload_to='images/', max_length=255)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
     def __str__(self):
