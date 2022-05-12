@@ -116,7 +116,7 @@ def unavailable_item(request, id):
 @login_required
 def add_image(request, id):
     if request.method == 'POST':
-        form = ItemImageAddForm(data=request.POST)
+        form = ItemImageAddForm(request.POST, request.FILES)
         if form.is_valid():
             item_img = form.save(commit=False)
             item_img.item = Item.objects.get(pk=id)
