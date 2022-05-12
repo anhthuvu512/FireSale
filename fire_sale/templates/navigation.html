@@ -23,7 +23,6 @@
             </button>
 
             <div class="dropdown-content">
-            <h5>Sellers</h5>
             {% for notif in buyer_notifs %}
                 {% if user.id == notif.receiver.buyer_id %}
                     {% if notif.offer.accepted %}
@@ -35,7 +34,6 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
-            <h5>Buyers</h5>
             {% for notif in seller_notifs %}
                 {% if user.id == notif.receiver.seller_id %}
                     <a href="{% url 'notification' notif.id %}">

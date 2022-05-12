@@ -23,7 +23,7 @@ def index(request):
     ratings = None
     if request.user.is_authenticated:
         ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
-    context = {'items': Item.objects.all().order_by('name'),
+    context = {'items': Item.objects.all().order_by('-id'),
                'seller_notifs': seller_notifs.order_by('-id'),
                'buyer_notifs': buyer_notifs.order_by('-id'),
                'ratings': ratings}
