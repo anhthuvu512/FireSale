@@ -21,7 +21,6 @@ def profile(request):
     instance = Profile.objects.filter(user=request.user).first()
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=instance)
-        print(form.errors)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user

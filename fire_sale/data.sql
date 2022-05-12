@@ -54,6 +54,11 @@ VALUES ('otheruser offers 500kr for T-shirt', 1, 1 ,3),
        ('lorraine offers 599kr for Old camera', 5, 2 ,1),
        ('lorraine offers 200kr for Threads', 6, 2 ,1);
 
+insert into user_rating(rate, item_id, seller_id)
+VALUES (4, 1, 2),
+       (5, 2, 2),
+       (5, 3, 2);
+
 drop function if exists CheckOfferPrice();
 create function CheckOfferPrice() returns trigger
 as $$ begin
