@@ -137,9 +137,32 @@ li {
     transform: scale(3);
 }
 
-.item-content, .contact-content, .payment-content{
+.contact-content, .payment-content{
     text-align: left;
 }
+
+.item-content  {
+    padding: 5px;
+    text-align: left;
+    padding-bottom: 10px;
+
+}
+
+.item-detail-img {
+    display: inline-block;
+    padding-top: 10px;
+    padding-right: 20px;
+
+}
+
+
+#offer-btn, #btn-test {
+    display: inline;
+    padding: 10px;
+    padding-top: 265px;
+    position: absolute;
+}
+
 
 .item-title, .contact-title, .payment-title{
     display: inline;
@@ -259,5 +282,6 @@ li {
         width: 15em;
         height: 15em;
     }
+
 }
 
