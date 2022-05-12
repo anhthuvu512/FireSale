@@ -181,8 +181,6 @@ def seller_notif_detail(request, id):
     offer = Offer.objects.get(pk=notif.offer_id)
     item = Item.objects.get(pk=offer.item_id)
     ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
-    if request.user.id != item.seller_id:
-        return redirect('sale-index')
     return render(request, 'sale/view_offer.html', {
         'notif': notif,
         'offer': offer,
