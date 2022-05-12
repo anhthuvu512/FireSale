@@ -9,7 +9,11 @@
         <p class="item-title">Description: </p><p class="item-info">{{ item.description }}</p>
         <br>
         {% for item_image in item.itemimage_set.all %}
-            <img class="item-img" src="{{ item_image.image }}">
+            {% if forloop.counter == 1 %}
+                <img class="item-img" src="{{ item_image.image }}" style="border-radius: 0.5em;"><br><br>
+            {% else %}
+                <img class="item-img" src="{{ item_image.image }}" style="height: 6.45em;width: 6.45em; display: inline-block;border-radius: 0.5em;">
+            {% endif %}
         {% endfor %}
         {% if user.id == item.seller.seller_id %}
             <a href="{% url 'add-image' item.id %}" class="button">Add image</a>

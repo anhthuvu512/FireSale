@@ -7,8 +7,18 @@
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 20%), 0 1px 5px rgb(0 0 0 / 20%);
 }
 
-.navbar a{
+a {
     color: black;
+    text-decoration: None;
+}
+
+#navbar-login {
+    height: 88px;
+}
+
+.navbar-right{
+    padding-top: 0.5em;
+    padding-right: 2em;
 }
 
 .item {
@@ -33,14 +43,14 @@
 }
 
 #top-btn{
-    width: 4.5em;
-    height: 4.5em;
+    width: 3.5em;
+    height: 3.5em;
     position: fixed;
     bottom: 45px;
-    right: 45px;
+    right: 35px;
 }
 
-h1{
+h1, h2{
     font-family: Audiowide;
 }
 
@@ -48,11 +58,12 @@ body{
     background-color: #fcf4e6;
     position: relative;
     min-height: 100vh;
+    overflow-x:hidden;
 }
 
 .container {
     text-align: center;
-    padding: 5em;
+    padding: 3em 5em;
 }
 
 .home {
@@ -73,8 +84,24 @@ li {
 }
 
 #profile_img, #notification, #star {
-    width: 3em;
-    height: 3em;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+#sign_btn {
+    top: -4.5px;
+    position: relative;
+}
+
+#profile_img {
+    top: -10px;
+    position: relative;
+}
+
+#rating {
+    top: 4.8px;
+    position: relative;
+    padding-right: 1em;
 }
 
 .Footer{
@@ -94,7 +121,7 @@ li {
     padding-bottom: 60px;
 
 }
-.edit_profile {
+.profile {
     display: inline-block;
     width: auto;
 
@@ -124,7 +151,7 @@ li {
     color: gray;
 
 }
-.button{
+.button {
     background-color: black;
     color: white;
     padding: 0.5em;
