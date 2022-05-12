@@ -23,7 +23,6 @@
             </button>
 
             <div class="dropdown-content">
-            <h5>Sellers</h5>
             {% for notif in buyer_notifs %}
                 {% if user.id == notif.receiver.buyer_id %}
                     {% if notif.offer.accepted %}
@@ -35,7 +34,6 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
-            <h5>Buyers</h5>
             {% for notif in seller_notifs %}
                 {% if user.id == notif.receiver.seller_id %}
                     <a href="{% url 'notification' notif.id %}">
@@ -46,9 +44,13 @@
             </div>
         </li>
         {% if request.user.is_authenticated %}
-            <li><a href="{% url 'profile' %}"><img id="profile_img" src="/media/{{ user.profile.image }}"></a></li>
+            {% if not user.profile.image %}
+                <li><a href="{% url 'profile' %}"><img id="profile_img" src="/media/images/profile.png"></a></li>
+            {% else %}
+                <li><a href="{% url 'profile' %}"><img id="profile_img" src="/media/{{ user.profile.image }}"></a></li>
+            {% endif %}
         {% else %}
-            <li><img id="profile_img" src="/media/profile.png"></li>
+            <li><a><img id="profile_img" src="/media/images/profile.png"></a></li>
         {% endif %}
     </ul>
 </nav>
