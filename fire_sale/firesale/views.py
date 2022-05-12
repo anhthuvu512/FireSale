@@ -58,7 +58,7 @@ def create_item(request):
             item = form.save(commit=False)
             item.seller = Seller.objects.get(seller=request.user.id)
             item.save()
-            item_images = request.FILES.getlist('image')
+            item_images = request.FILES.getlist('images')
             for image in item_images:
                 ItemImage.objects.create(image=image, item=item)
             return redirect('sale-index')
