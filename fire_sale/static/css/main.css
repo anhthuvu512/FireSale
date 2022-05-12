@@ -275,5 +275,10 @@ li {
         height: 15em;
     }
 
+
+    .navbar-right{
+        display: flex;
+    }
+
 }
 
