@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>Item detail</h2>
-    <form enctype= multipart/form-data class="form form-horizontal" action="{% url 'create-item' %}" method="post">
-        {% csrf_token %}
-        <p class="item-title">Name:</p><p class="offer-price">{{ form.name }}</p>
-        <br>
-        <p class="item-title">Condition:</p><p class="offer-price">{{ form.condition }}</p>
-        <br>
-        <p class="item-title">Description:</p><p class="offer-price">{{ form.description }}</p>
-        <br>
-        <p class="item-title">Images</p><input type="file" multiple name="images" required id="id_images">
-        <br>
-        <input type="submit" value="Create item" class="button">
-    </form>
+    <div class="form">
+        <form enctype= multipart/form-data class="form form-horizontal" action="{% url 'create-item' %}" method="post">
+            {% csrf_token %}
+            <label for="{{ form.name.id_for_label }}">Name:</label>
+            {{ form.name }}
+            <label for="{{ form.condition.id_for_label }}">Condition:</label>
+            {{ form.condition }}
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+            <label for="{{ form.image.id_for_label }}">Images:</label>
+            <input type="file" multiple name="images" required id="id_images">
+            <input type="submit" value="Create item" class="button">
+        </form>
+    </div>
 {% endblock %}

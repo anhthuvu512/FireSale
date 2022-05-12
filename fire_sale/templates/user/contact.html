@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
     <h2>Contact information</h2>
-    <form class="form form-horizontal" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" class="button" value="Next"/>
-    </form>
+    <div class="form">
+        <form class="form form-horizontal" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <p><input type="submit" class="button" value="Next"/></p>
+        </form>
+    </div>
 {% endblock %}

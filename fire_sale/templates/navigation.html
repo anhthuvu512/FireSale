@@ -48,7 +48,7 @@
         {% if request.user.is_authenticated %}
             <li><a href="{% url 'profile' %}"><img id="profile_img" src="/media/{{ user.profile.image }}"></a></li>
         {% else %}
-            <li><img id="profile_img" src="https://cdn-icons-png.flaticon.com/512/64/64572.png"></li>
+            <li><img id="profile_img" src="/media/profile.png"></li>
         {% endif %}
     </ul>
 </nav>

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
     <h2>Profile</h1>
-    <div class="profile">
+    <div class="form">
         <form enctype= multipart/form-data class="form form-horizontal" method="post">
             {% csrf_token %}
             {{ form }}
-            <p id="edit_btn"> <input type="submit" class="button" value="Submit"/></p>
+            <input type="submit" class="button" value="Submit"/>
         </form>
     </div>
 {% endblock %}

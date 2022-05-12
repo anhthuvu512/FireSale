@@ -20,13 +20,13 @@
             </div>
         {% if user.id == item.seller.seller_id %}
         <p id="btn-test">
-            <a href="{% url 'add-image' item.id %}" class="button">Add image</a>
-            <a href="{% url 'update-item' item.id %}" class="button">Update item</a>
-            <a href="{% url 'delete-item' item.id %}" class="button">Delete item</a>
+            <input type="button" onclick="window.location.href='{% url 'add-image' item.id %}';" class="button" value="Add image"/>
+            <input type="button" onclick="window.location.href='{% url 'update-item' item.id %}';" class="button" value="Update item"/>
+            <input type="button" onclick="window.location.href='{% url 'delete-item' item.id %}';" class="button" value="Delete item"/>
             </p>
         {% else %}
         <p id="offer-btn">
-               <a href="{% url 'make-offer' item.id %}" class="button" >Make offer</a>
+            <input type="button" onclick="window.location.href='{% url 'make-offer' item.id %}';" class="button" value="Make offer"/>
         </p>
         {% endif %}
         </div>

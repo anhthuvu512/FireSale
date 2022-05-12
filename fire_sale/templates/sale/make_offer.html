@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>Make offer</h2>
-    <div class="make-offer">
+    <div class="form">
         <form class="form form-horizontal" action="{% url 'make-offer' id %}" method="post">
-        {% csrf_token %}
-        <p class="item-title">Price:</p><p class="offer-price">{{ form.price }}</p>
-        <br>
-        <p class="item-title">Message: </p>
-            <div id="offer-message">
-                {{ form.message }}
-            </div>
-        <br>
+            {% csrf_token %}
+            <label for="{{ form.price.id_for_label }}">Price:</label>
+            {{ form.price }}
+            <label for="{{ form.message.id_for_label }}">Message:</label>
+            {{ form.message }}
             <input type="submit" value="Send" class="button">
         </form>
     </div>

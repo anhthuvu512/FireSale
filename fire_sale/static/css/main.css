@@ -121,10 +121,14 @@ li {
     padding-bottom: 60px;
 
 }
-.profile {
+.form {
     display: inline-block;
     width: auto;
+    min-width: 300px;
+}
 
+input[type="file"] {
+    text-align: center;
 }
 
 .item-img {
@@ -183,6 +187,7 @@ li {
     background-color: black;
     color: white;
     padding: 0.5em;
+    margin: 1em;
     border-radius: 0.5em;
 }
 
@@ -205,17 +210,9 @@ li {
 
 }
 
-.make-offer {
-    display: inline-block;
-    width: auto;
-}
-
 .edit_profile {
     display: inline-block;
      width: auto;
-}
-#edit_btn {
-    padding-top: 10px;
 }
 
 .dropbtn {

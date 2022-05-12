@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
     <h2>Card information</h2>
-    <form class="form form-horizontal" method="post">
-        {% csrf_token %}
-        <p class="item-title">Cardholder:</p><p class="item-info">{{ form.cardholder }}</p>
-        <br>
-        <p class="item-title">Card nr:</p><p class="item-info">{{ form.card_nr }}</p>
-        <br>
-        <p class="item-title">Expiry date:</p><p class="item-info">{{ form.expiry_month }}/{{ form.expiry_year }}</p>
-        <br>
-        <p class="item-title">CVC:</p><p class="item-info">{{ form.cvc }}</p>
-        <br>
-    <input type="button" onclick="window.location.href='{% url 'contact' id %}';" class="button" value="Prev"/>        <input type="submit" class="button" value="Next"/>
-    </form>
+    <div class="form">
+        <form class="form form-horizontal" method="post">
+            {% csrf_token %}
+            <label for="{{ form.cardholder.id_for_label }}">Cardholder:</label>
+            {{ form.cardholder }}
+            <label for="{{ form.card_nr.id_for_label }}">Card nr:</label>
+            {{ form.card_nr }}
+            <label>Expiry date:</label>
+            {{ form.expiry_month }}/{{ form.expiry_year }}
+            <label for="{{ form.cvc.id_for_label }}">CVC:</label>
+            {{ form.cvc }}
+            <input type="button" onclick="window.location.href='{% url 'contact' id %}';" class="button" value="Prev"/>
+            <input type="submit" class="button" value="Next"/>
+        </form>
+    </div>
 {% endblock %}
