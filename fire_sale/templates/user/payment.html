@@ -9,7 +9,11 @@
             <label for="{{ form.card_nr.id_for_label }}">Card nr:</label>
             {{ form.card_nr }}
             <label>Expiry date:</label>
-            {{ form.expiry_month }}/{{ form.expiry_year }}
+            <div class="input-group">
+                <input type="number" name="expiry_month" required="" placeholder="MM" id="id_expiry_month" class="form-control input-sm">
+                <span class="input-group-btn" style="width:0px;"></span>
+                <input type="number" name="expiry_year" required="" placeholder="YY" id="id_expiry_year" class="form-control input-sm">
+            </div>
             <label for="{{ form.cvc.id_for_label }}">CVC:</label>
             {{ form.cvc }}
             <input type="button" onclick="window.location.href='{% url 'contact' id %}';" class="button" value="Prev"/>

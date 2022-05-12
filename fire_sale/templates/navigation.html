@@ -48,7 +48,7 @@
         {% if request.user.is_authenticated %}
             <li><a href="{% url 'profile' %}"><img id="profile_img" src="/media/{{ user.profile.image }}"></a></li>
         {% else %}
-            <li><img id="profile_img" src="/media/profile.png"></li>
+            <li><a><img id="profile_img" src="/media/images/profile.png"></a></li>
         {% endif %}
     </ul>
 </nav>
