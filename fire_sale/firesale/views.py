@@ -20,7 +20,9 @@ def index(request):
             'firstImage': item.itemimage_set.first().image
         } for item in Item.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': items})
-    ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
+    ratings = None
+    if request.user.is_authenticated:
+        ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
     context = {'items': Item.objects.all().order_by('name'),
                'seller_notifs': seller_notifs.order_by('-id'),
                'buyer_notifs': buyer_notifs.order_by('-id'),
@@ -37,7 +39,9 @@ def item_details(request, id):
     for similar_item in similar_items:
         if similar_item == item:
             similar_items.remove(similar_item)
-    ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
+    ratings = None
+    if request.user.is_authenticated:
+        ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
     return render(request, 'sale/item_details.html', {
         'item': item,
         'similar_items': similar_items,
@@ -51,7 +55,9 @@ def sort_item(request):
     sort_by = request.GET.get('sort')
     if sort_by:
         items = items.order_by(sort_by)
-    ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
+    ratings = None
+    if request.user.is_authenticated:
+        ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
     context = {'items': items,
                'seller_notifs': seller_notifs.order_by('-id'),
                'buyer_notifs': buyer_notifs.order_by('-id'),

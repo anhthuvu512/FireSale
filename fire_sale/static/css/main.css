@@ -84,8 +84,13 @@ li {
 }
 
 #profile_img, #notification, #star {
-    width: 2.5em;
-    height: 2.5em;
+    width: 35px;
+    height: 35px;
+}
+
+#profile_img {
+    top: -14px;
+    position: relative
 }
 
 #sign_btn {
@@ -93,13 +98,8 @@ li {
     position: relative;
 }
 
-#profile_img {
-    top: -10px;
-    position: relative;
-}
-
 #rating {
-    top: 4.8px;
+    top: 8px;
     position: relative;
     padding-right: 1em;
 }
