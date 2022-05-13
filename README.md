@@ -15,7 +15,15 @@ After installing everything you can now run the server
 
 ## Users
 
-username: newuser, otheruser, seller, buyer
+username: ```newuser```, ```otheruser```,```seller```and```buyer```
 
-password: Pass.123
+password: ```Pass.123```
+
+## Database
+
+![alt text](fire_sale/static/images/database.png)
+
+User: ```fire-sale-db-user```
+
+Password: ```Pass.123```
 
