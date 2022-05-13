@@ -216,10 +216,13 @@ def accept_offer(request, id):
     notification.save()
     offer.accepted = True
     offer.save()
-    other_offer = Offer.objects.filter(item_id=offer.item_id, accepted=False)
-    print(other_offer)
-    other_notifs = SellerNotification.objects.exclude(offer_id=id)
-    for other_notif in other_notifs:
-        decline_offer(request, other_notif.id)
+    other_offer = Offer.objects.filter(item_id=offer.item_id, accepted= False)
+    for o in other_offer:
+        try:
+            other_notif = SellerNotification.objects.get(offer_id=o.id)
+        except:
+            pass
+        else:
+            decline_offer(request, other_notif.id)
     notif.delete()
     return redirect('sale-index')

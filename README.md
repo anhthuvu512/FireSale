@@ -13,3 +13,9 @@ After installing everything you can now run the server
 
 ```python manage.py runserver```
 
+## Users
+
+username: newuser, otheruser, seller, buyer
+
+password: Pass.123
+
