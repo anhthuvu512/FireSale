@@ -1,23 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Card information</h2>
-    <div class="form">
-        <form class="form form-horizontal" method="post">
-            {% csrf_token %}
-            <label for="{{ form.cardholder.id_for_label }}">Cardholder:</label>
-            {{ form.cardholder }}
-            <label for="{{ form.card_nr.id_for_label }}">Card nr:</label>
-            {{ form.card_nr }}
-            <label>Expiry date:</label>
-            <div class="input-group">
-                <input type="number" name="expiry_month" required="" placeholder="MM" id="id_expiry_month" class="form-control input-sm">
-                <span class="input-group-btn" style="width:0px;"></span>
-                <input type="number" name="expiry_year" required="" placeholder="YY" id="id_expiry_year" class="form-control input-sm">
-            </div>
-            <label for="{{ form.cvc.id_for_label }}">CVC:</label>
-            {{ form.cvc }}
-            <input type="button" onclick="window.location.href='{% url 'contact' id %}';" class="button" value="Prev"/>
-            <input type="submit" class="button" value="Next"/>
-        </form>
-    </div>
+    {% if user.id == offer.buyer.buyer_id and offer.accepted%}
+        <h2>Card information</h2>
+        <div class="form">
+            <form class="form form-horizontal" method="post">
+                {% csrf_token %}
+                <label for="{{ form.cardholder.id_for_label }}">Cardholder:</label>
+                {{ form.cardholder }}
+                <label for="{{ form.card_nr.id_for_label }}">Card nr:</label>
+                {{ form.card_nr }}
+                <label>Expiry date:</label>
+                <div class="input-group">
+                    <input type="number" name="expiry_month" required="" placeholder="MM" id="id_expiry_month" class="form-control input-sm">
+                    <span class="input-group-btn" style="width:0px;"></span>
+                    <input type="number" name="expiry_year" required="" placeholder="YY" id="id_expiry_year" class="form-control input-sm">
+                </div>
+                <label for="{{ form.cvc.id_for_label }}">CVC:</label>
+                {{ form.cvc }}
+                <input type="button" onclick="window.location.href='{% url 'contact' id %}';" class="button" value="Prev"/>
+                <input type="submit" class="button" value="Next"/>
+            </form>
+        </div>
+    {% else %}
+        <h2>Access denied</h2>
+        <p>You don't have permission to access this page</p>
+    {% endif %}
 {% endblock %}

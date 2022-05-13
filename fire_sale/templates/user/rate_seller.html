@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Rate seller</h2>
-    <div class="form">
-        <form class="form form-horizontal" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="button" onclick="window.location.href='{% url 'payment' id %}';" class="button" value="Prev"/>
-            <input type="submit" class="button" value="Next"/>
-        </form>
-    </div>
+    {% if user.id == offer.buyer.buyer_id and offer.accepted%}
+        <h2>Rate seller</h2>
+        <div class="form">
+            <form class="form form-horizontal" method="post">
+                {% csrf_token %}
+                <label for="{{ form.rate.id_for_label }}">Rate:</label>
+                <input type="number" name="rate" required="" placeholder="Input from 1 to 5" id="id_rate" class="form-control">
+                <input type="button" onclick="window.location.href='{% url 'payment' id %}';" class="button" value="Prev"/>
+                <input type="submit" class="button" value="Next"/>
+            </form>
+        </div>
+    {% else %}
+        <h2>Access denied</h2>
+        <p>You don't have permission to access this page</p>
+    {% endif %}
 {% endblock %}

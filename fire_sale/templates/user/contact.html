@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Contact information</h2>
-    <div class="form">
-        <form class="form form-horizontal" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <p><input type="submit" class="button" value="Next"/></p>
-        </form>
-    </div>
+    {% if user.id == offer.buyer.buyer_id and offer.accepted %}
+        <h2>Contact information</h2>
+        <div class="form">
+            <form class="form form-horizontal" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <p><input type="submit" class="button" value="Next"/></p>
+            </form>
+        </div>
+    {% else %}
+        <h2>Access denied</h2>
+        <p>You don't have permission to access this page</p>
+    {% endif %}
 {% endblock %}

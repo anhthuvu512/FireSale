@@ -1,43 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Review</h2>
-    <div class="item-content">
-        <h2>{{ item.name }}</h2>
-        <img class="item-img" src="{{ item.itemimage_set.first.image }}">
-        <br>
-        <p class="item-title">Highest offer: </p><p class="item-info">{{ item.highest_offer }}kr</p>
-        <br>
-        <p class="item-title">Condition: </p><p class="item-info">{{ item.condition }}</p>
-        <br>
-        <p class="item-title">Description: </p><p class="item-info">{{ item.description }}</p>
-        <br>
-    </div>
-    <div class="contact-content">
-        <h2>Contact Information</h2>
-        <p class="contact-title">Full name: </p><p class="contact-info">{{ contact.full_name }}</p>
-        <br>
-        <p class="contact-title">Street name: </p><p class="contact-info">{{ contact.street_name }}</p>
-        <br>
-        <p class="contact-title">House number: </p><p class="contact-info">{{ contact.house_nr }}</p>
-        <br>
-        <p class="contact-title">City: </p><p class="contact-info">{{ contact.city }}</p>
-        <br>
-        <p class="contact-title">Postal code: </p><p class="contact-info">{{ contact.zip }}</p>
-        <br>
-        <p class="contact-title">Country: </p><p class="contact-info">{{ contact.country }}</p>
-        <br>
-    </div>
-    <div class="payment-content">
-        <h2>Contact Information</h2>
-        <p class="payment-title">Cardholder name: </p><p class="payment-info">{{ payment.cardholder }}</p>
-        <br>
-        <p class="payment-title">Card number: </p><p class="payment-info">{{ payment.card_nr }}</p>
-        <br>
-        <p class="payment-title">Expiry date: </p><p class="payment-info">{{ payment.expiry_date }}</p>
-        <br>
-        <p class="payment-title">CVC: </p><p class="payment-info">{{ payment.cvc }}</p>
-        <br>
-    </div>
-    <input type="button" onclick="window.location.href='{% url 'rate-seller' id %}';" class="button" value="Prev"/>
-    <input type="button" onclick="window.location.href='{% url 'unavailable-item' id %}';" class="button" value="Confirm" name="Confirm" action="{% url 'review' id %}"/>
+    {% if user.id == offer.buyer.buyer_id and offer.accepted%}
+        <h2>Review</h2>
+        <div class="item-content">
+            <h2>{{ item.name }}</h2>
+            <img class="item-img" src="{{ item.itemimage_set.first.image }}">
+            <br>
+            <p class="item-title">Highest offer: </p><p class="item-info">{{ item.highest_offer }}kr</p>
+            <br>
+            <p class="item-title">Condition: </p><p class="item-info">{{ item.condition }}</p>
+            <br>
+            <p class="item-title">Description: </p><p class="item-info">{{ item.description }}</p>
+            <br>
+        </div>
+        <div class="contact-content">
+            <h2>Contact Information</h2>
+            <p class="contact-title">Full name: </p><p class="contact-info">{{ contact.full_name }}</p>
+            <br>
+            <p class="contact-title">Street name: </p><p class="contact-info">{{ contact.street_name }}</p>
+            <br>
+            <p class="contact-title">House number: </p><p class="contact-info">{{ contact.house_nr }}</p>
+            <br>
+            <p class="contact-title">City: </p><p class="contact-info">{{ contact.city }}</p>
+            <br>
+            <p class="contact-title">Postal code: </p><p class="contact-info">{{ contact.zip }}</p>
+            <br>
+            <p class="contact-title">Country: </p><p class="contact-info">{{ contact.country }}</p>
+            <br>
+        </div>
+        <div class="payment-content">
+            <h2>Contact Information</h2>
+            <p class="payment-title">Cardholder name: </p><p class="payment-info">{{ payment.cardholder }}</p>
+            <br>
+            <p class="payment-title">Card number: </p><p class="payment-info">{{ payment.card_nr }}</p>
+            <br>
+            <p class="payment-title">Expiry date: </p><p class="payment-info">{{ payment.expiry_date }}</p>
+            <br>
+            <p class="payment-title">CVC: </p><p class="payment-info">{{ payment.cvc }}</p>
+            <br>
+        </div>
+        <input type="button" onclick="window.location.href='{% url 'rate-seller' id %}';" class="button" value="Prev"/>
+        <input type="button" onclick="window.location.href='{% url 'unavailable-item' id %}';" class="button" value="Confirm" name="Confirm" action="{% url 'review' id %}"/>
+    {% else %}
+        <h2>Access denied</h2>
+        <p>You don't have permission to access this page</p>
+    {% endif %}
 {% endblock %}

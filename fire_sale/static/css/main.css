@@ -124,7 +124,7 @@ li {
 .form {
     display: inline-block;
     width: auto;
-    min-width: 300px;
+    max-width: 300px;
 }
 
 input[type="file"] {

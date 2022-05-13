@@ -52,6 +52,7 @@ def contact(request, id):
     return render(request, 'user/contact.html', {
         'form': UserContactForm(instance=instance),
         'id': id,
+        'offer': Offer.objects.get(pk=id),
         'seller_notifs': seller_notifs.order_by('-id'),
         'buyer_notifs': buyer_notifs.order_by('-id'),
         'ratings': ratings
@@ -70,6 +71,7 @@ def payment(request, id):
     return render(request, 'user/payment.html', {
         'form': UserPaymentForm(instance=instance),
         'id': id,
+        'offer': Offer.objects.get(pk=id),
         'seller_notifs': seller_notifs.order_by('-id'),
         'buyer_notifs': buyer_notifs.order_by('-id'),
         'ratings': Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
@@ -92,6 +94,7 @@ def rate_seller(request, id):
     return render(request, 'user/rate_seller.html', {
         'form': UserRatingForm(instance=instance),
         'id': id,
+        'offer': Offer.objects.get(pk=id),
         'seller_notifs': seller_notifs.order_by('-id'),
         'buyer_notifs': buyer_notifs.order_by('-id'),
         'ratings': Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
@@ -104,6 +107,7 @@ def review(request, id):
         'contact': get_object_or_404(Address, user=request.user.id),
         'payment': get_object_or_404(Payment, user=request.user.id),
         'id': id,
+        'offer': Offer.objects.get(pk=id),
         'seller_notifs': seller_notifs.order_by('-id'),
         'buyer_notifs': buyer_notifs.order_by('-id'),
         'ratings': Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
