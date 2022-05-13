@@ -39,5 +39,5 @@
         <br>
     </div>
     <input type="button" onclick="window.location.href='{% url 'rate-seller' id %}';" class="button" value="Prev"/>
-    <input type="button" onclick="window.location.href='{% url 'unavailable-item' id %}';" class="button" value="Confirm"/>
+    <input type="button" onclick="window.location.href='{% url 'unavailable-item' id %}';" class="button" value="Confirm" name="Confirm" action="{% url 'review' id %}"/>
 {% endblock %}

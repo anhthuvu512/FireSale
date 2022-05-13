@@ -214,7 +214,11 @@ def accept_offer(request, id):
                                                     notif=str(request.user.username) + ' accepts the offer ' +
                                                           str(offer.price) + 'kr for ' + str(offer.item.name))
     notification.save()
-    notif.delete()
     offer.accepted = True
     offer.save()
+    other_offer = Offer.objects.filter(item_id=offer.item_id, accepted= False)
+    for o in other_offer:
+        other_notif = SellerNotification.objects.get(offer_id=o.id)
+        decline_offer(request, other_notif.id)
+    notif.delete()
     return redirect('sale-index')
