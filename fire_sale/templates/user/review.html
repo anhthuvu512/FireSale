@@ -4,7 +4,7 @@
         <h2>Review</h2>
         <div class="item-content">
             <h2>{{ item.name }}</h2>
-            <img class="item-img" src="{{ item.itemimage_set.first.image }}">
+            <img class="item-img" src="/media/{{ item.itemimage_set.first.image }}">
             <br>
             <p class="item-title">Highest offer: </p><p class="item-info">{{ item.highest_offer }}kr</p>
             <br>

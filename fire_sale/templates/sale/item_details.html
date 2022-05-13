@@ -31,14 +31,16 @@
         {% endif %}
         </div>
 
+    {% if similar_items %}
+        <div class="items">
+            <h2>Similar items</h2>
+            {% for item in similar_items %}
+                {% if item.available %}
+                    {% include 'sale/single_item.html' with item=item %}
+                {% endif %}
+            {% endfor %}
 
-    <div class="items">
-        <h2>Similar items</h2>
-        {% for item in similar_items %}
-            {% if item.available %}
-                {% include 'sale/single_item.html' with item=item %}
-            {% endif %}
-        {% endfor %}
-    </div>
+        </div>
+    {% endif %}
 
 {% endblock %}
