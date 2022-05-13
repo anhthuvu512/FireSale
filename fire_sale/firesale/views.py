@@ -18,13 +18,13 @@ def index(request):
             'id': item.id,
             'name': item.name,
             'description': item.description,
-            'firstImage': item.itemimage_set.first().image
+            'firstImage': str(item.itemimage_set.first().image)
         } for item in Item.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': items})
     ratings = None
     if request.user.is_authenticated:
         ratings = Rating.objects.filter(seller=Seller.objects.get(seller=request.user.id)).aggregate(Avg('rate'))
-    context = {'items': Item.objects.all().order_by('-id'),
+    context = {'items': Item.objects.all(),
                'seller_notifs': seller_notifs.order_by('-id'),
                'buyer_notifs': buyer_notifs.order_by('-id'),
                'ratings': ratings}
